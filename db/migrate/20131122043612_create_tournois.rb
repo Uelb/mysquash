@@ -5,8 +5,8 @@ class CreateTournaments < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.boolean :open
-      t.integer :mens_limit
-      t.integer :womens_limit
+      t.integer :men_limit
+      t.integer :women_limit
       t.boolean :published_in_next_tournament
 
       t.timestamps
