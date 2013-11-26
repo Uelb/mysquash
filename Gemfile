@@ -40,3 +40,6 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 #Use haml as a handler
 gem 'haml-rails'
+
+'The user interface to send a mail'
+gem 'tinymce-rails'

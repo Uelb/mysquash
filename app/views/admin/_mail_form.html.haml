@@ -1,0 +1,42 @@
+= form_tag "/admin/dashboard/mail", method: :get, id: :mail_form do
+  #recipients_div
+    #recipients_label= label_tag :recipients, "Recipients : ", style: "font-weight:bold;"
+    - users.each do |user|
+      .one_user
+        .checkbox= check_box_tag 'users[]', user.id
+        .username= user.name
+    #check_all= button_to_function "Check / Uncheck All", "toggleChecked()" 
+  = label_tag :mail_subject, "Subject : ", style: "font-weight:bold;"
+  = text_field_tag :mail_subject, "", style: "margin-bottom:2%;"
+  = text_area_tag :editor, "", :class => "tinymce", :rows => 30, :cols => 120
+  = tinymce 
+  = submit_tag "Send the mail"
+
+:css
+  .one_user{
+    display:inline-block;
+    width:33%;
+    height:10%;
+  }
+  .checkbox, .username{
+    display:inline-block;
+    vertical-align:middle;
+  }
+
+  #recipients_div{
+    margin-bottom:2%;
+  }
+  #check_all{
+    margin-top:1%;
+  }
+
+:javascript
+  var toggleChecked = function() { 
+    toCheck = false;
+    $.each($('#mail_form input[type="checkbox"]'), function(index, checkbox){
+      if(!$(checkbox).prop('checked')){
+        toCheck = true;
+      }
+    });
+      $('#mail_form input[type="checkbox"]').prop('checked', toCheck); 
+  }

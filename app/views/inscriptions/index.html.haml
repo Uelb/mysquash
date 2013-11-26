@@ -1,0 +1,16 @@
+#participants_list
+  = "#{@males.count} joueurs inscrits pour les hommes"
+
+  - @males.each do |user|
+    .licence= user.licence
+    .name= user.name
+    .asso= user.association
+    .validation= if validated_by_admin then "OK (#{validation_date.to_formatted_s(:short)})" else "NON VALIDÉ"
+
+  = "#{@females.count} joueurs inscrits pour les hommes"
+
+  - @females.each do |user|
+    .licence= user.licence
+    .name= user.name
+    .asso= user.association
+    .validation= if validated_by_admin then "OK (#{validation_date.to_formatted_s(:short)})" else "NON VALIDÉ"

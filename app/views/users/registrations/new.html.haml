@@ -1,0 +1,48 @@
+%h2 Sign up
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = devise_error_messages!
+
+  %div
+    = f.label :email
+    %br
+    = f.email_field :email, :autofocus => true
+
+  %div
+    = f.label :password
+    %br
+    = f.password_field :password
+
+  %div
+    = f.label :password_confirmation
+    %br
+    = f.password_field :password_confirmation
+
+  %div
+    = f.label :first_name
+    %br
+    = f.password_field :first_name
+
+  %div
+    = f.label :last_name
+    %br
+    = f.password_field :last_name
+
+  %div
+    = f.label :association_name
+    %br
+    = f.text_field :association_name
+
+  %div
+    = f.label :licence
+    %br
+    = f.text_field :licence
+
+  %div
+    = f.label :male
+    = f.radio_button :male, "1"
+    %br
+    = f.label :female
+    = f.radio_button :male, "0"
+
+  %div= f.submit "Créer un compte"
+= render "users/shared/links"
