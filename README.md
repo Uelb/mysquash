@@ -1,0 +1,4 @@
+mysquash
+========
+
+My squash website
