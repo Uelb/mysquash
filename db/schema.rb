@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126030521) do
+ActiveRecord::Schema.define(version: 20131127052313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20131126030521) do
 
   create_table "inscriptions", force: true do |t|
     t.datetime "validation_date"
-    t.boolean  "validated_by_admin"
-    t.boolean  "preinscription"
+    t.boolean  "validated_by_admin", default: false
+    t.boolean  "preinscription",     default: false
     t.integer  "user_id"
     t.integer  "tournament_id"
     t.datetime "created_at"
@@ -90,6 +90,8 @@ ActiveRecord::Schema.define(version: 20131126030521) do
     t.string   "licence"
     t.string   "association_name"
     t.boolean  "male",                   default: true
+    t.string   "telephone_number"
+    t.text     "comment"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

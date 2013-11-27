@@ -3,11 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 handleSuccess = (data, textStatus, jqXHR) ->
-	$.get 'inscriptions', {tournament_id: $("#tournament_id").val()}, (data) ->
+	$.post 'inscriptions', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
 		$("#participants_list").html(data)
 
 handleFailure = () ->
-	console.log "fail"
+	$("#registration_form #user_email").val $("#tournament_form #email").val()
+	$("#registration_form").show()
 
 set_tournament_form = () ->
 	$("#tournament_form").submit (evt) ->

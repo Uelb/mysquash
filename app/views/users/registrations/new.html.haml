@@ -20,12 +20,12 @@
   %div
     = f.label :first_name
     %br
-    = f.password_field :first_name
+    = f.text_field :first_name
 
   %div
     = f.label :last_name
     %br
-    = f.password_field :last_name
+    = f.text_field :last_name
 
   %div
     = f.label :association_name
@@ -36,6 +36,11 @@
     = f.label :licence
     %br
     = f.text_field :licence
+
+  %div
+    = f.label :telephone_number
+    %br
+    = f.text_field :telephone_number
 
   %div
     = f.label :male

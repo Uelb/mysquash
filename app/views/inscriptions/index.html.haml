@@ -1,16 +1,29 @@
 #participants_list
-  = "#{@males.count} joueurs inscrits pour les hommes"
+  #males
+    - if @males.count > 1
+      = "#{@males.count} joueurs inscrits pour les hommmes"
+    - else
+      = "#{@males.count} joueur inscrit pour les hommmes"
+    - @males.each do |user|
+      .licence= user.licence
+      .name= user.name
+      .asso= user.association
+      - if @inscriptions.select{|inscription| inscription.user_id == user.id}.first.validated_by_admin then
+        .validation=  "OK (#{validation_date.to_formatted_s(:short)})" 
+      - else
+        .validation= "NON VALIDÉ"
 
-  - @males.each do |user|
-    .licence= user.licence
-    .name= user.name
-    .asso= user.association
-    .validation= if validated_by_admin then "OK (#{validation_date.to_formatted_s(:short)})" else "NON VALIDÉ"
+  #females
+    - if @females.count > 1
+      = "#{@females.count} joueurs inscrits pour les femmes"
+    - else
+      = "#{@females.count} joueur inscrit pour les femmes"
 
-  = "#{@females.count} joueurs inscrits pour les hommes"
-
-  - @females.each do |user|
-    .licence= user.licence
-    .name= user.name
-    .asso= user.association
-    .validation= if validated_by_admin then "OK (#{validation_date.to_formatted_s(:short)})" else "NON VALIDÉ"
+    - @females.each do |user|
+      .licence= user.licence
+      .name= user.name
+      .asso= ""
+      - if @inscriptions.select{|inscription| inscription.user_id == user.id}.first.validated_by_admin then
+        .validation=  "OK (#{validation_date.to_formatted_s(:short)})" 
+      - else
+        .validation= "NON VALIDÉ"

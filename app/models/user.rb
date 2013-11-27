@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   scope :male, where(male: true)
   scope :female, where(male: false)
   after_create :send_registration_mail
+  validates_presence_of :first_name, :last_name
 
   def name
   	first_name + " " + last_name
@@ -17,5 +18,4 @@ class User < ActiveRecord::Base
   def send_registration_mail
     UserMailer.registration_email(self).deliver
   end
-
 end

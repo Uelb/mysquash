@@ -18,7 +18,7 @@
     %p Merci de bien vouloir renseigner le champ suivant :
     = form_tag inscriptions_path, method: :post, id: :tournament_form do 
       = hidden_field_tag :tournament_id, @tournament.id
-      = text_field_tag :email
+      = email_field_tag :email
       = submit_tag "Valider"
 
   #participants_list
