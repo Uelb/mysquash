@@ -16,6 +16,6 @@ class User < ActiveRecord::Base
   end
 
   def send_registration_mail
-    UserMailer.registration_email(self).deliver
+    UserMailer.registration_email(self).deliver!
   end
 end

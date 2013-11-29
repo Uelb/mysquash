@@ -1,6 +1,3 @@
-!!!
-%html
-  %head
-    %meta{content: "text/html", charset: "UTF-8", http-equiv: "Content-Type"}
-  %body
-    
+.super_class Test email inscription
+
+= link_to "The confirmation page", "#{root_url}/inscriptions/#{@inscription.id}/edit?token=#{@inscription.token}"

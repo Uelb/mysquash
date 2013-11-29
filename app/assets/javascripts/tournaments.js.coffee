@@ -4,7 +4,7 @@
 
 handleSuccess = (data, textStatus, jqXHR) ->
 	$.post 'inscriptions', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
-		$("#participants_list").html(data)
+		$('#content').html data
 
 handleFailure = () ->
 	$("#registration_form #user_email").val $("#tournament_form #email").val()

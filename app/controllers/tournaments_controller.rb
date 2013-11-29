@@ -1,5 +1,7 @@
 class TournamentsController < ApplicationController
 
+	layout 'inscriptions'
+
 	def show
 		@tournament = Tournament.where(id: params[:id]).first
 		@tournament||= Tournament.last
