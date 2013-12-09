@@ -56,4 +56,10 @@ class InscriptionsController < ApplicationController
 		end
 	end
 
+	def update
+		@inscription = Inscription.where(id: params[:id]).first
+		@user = @inscription.user
+		@user.validate_user_information params[:email_confirmation], params[:phone_number_confirmation]
+	end
+
 end

@@ -6,16 +6,15 @@ class User < ActiveRecord::Base
 
   has_many :inscriptions
   has_many :tournaments, through: :inscriptions
-  scope :male, where(male: true)
-  scope :female, where(male: false)
-  after_create :send_registration_mail
+  scope :males, where(male: true)
+  scope :females, where(male: false)
   validates_presence_of :first_name, :last_name
 
   def name
   	first_name + " " + last_name
   end
 
-  def send_registration_mail
-    UserMailer.registration_email(self).deliver!
-  end
+  def validate_user_information email, phone_number
+    return self.email == email && self.phone_number == phone_number
+  end 
 end
