@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 ActiveAdmin.register_page "Dashboard" do
 
   menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
@@ -14,7 +16,16 @@ ActiveAdmin.register_page "Dashboard" do
   end
 
   content :title => proc{ I18n.t("active_admin.dashboard") } do
-    panel "Send a mail to all the users" do 
+    panel "Les matches pour le prochain tournoi." do
+      @inscriptions = Tournament.opened.first.inscriptions
+      if(@inscriptions.empty?)
+        span "Il n'y a pas encore d'inscriptions pour le tournoi en cours ou le tournoi en cours n'a pas encore été créé."
+      else
+        render partial: "admin/match_management", :locals => {:inscriptions => @inscriptions}
+      end
+    end
+
+    panel "Envoyer un email à tous les utilisateurs" do 
       @users = User.all
       render partial: "admin/mail_form", :locals => { :users => @users }
     end

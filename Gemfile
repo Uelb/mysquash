@@ -43,3 +43,5 @@ gem 'haml-rails'
 
 'The user interface to send a mail'
 gem 'tinymce-rails'
+
+gem 'spreadsheet'

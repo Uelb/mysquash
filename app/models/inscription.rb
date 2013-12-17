@@ -9,6 +9,9 @@ class Inscription < ActiveRecord::Base
 	before_create :check_tournament_limits
 
 	def validate!
+		if self.validated_by_admin
+			return
+		end
 		self.validated_by_admin = true
 		self.validation_date = DateTime.now
 		self.save!
@@ -16,6 +19,18 @@ class Inscription < ActiveRecord::Base
 			UserMailer.waiting_list_validated(self).deliver
 		else
 			UserMailer.inscription_validated(self).deliver
+		end
+	end
+
+	def user_validate!
+		if self.validated_by_user
+			return
+		end
+		self.validated_by_user = true
+		self.save!
+		if self.waiting_list
+			UserMailer.waiting_list_email(self).deliver
+		else
 		end
 	end
 
@@ -28,10 +43,42 @@ class Inscription < ActiveRecord::Base
 	end
 
 	def resend_inscription_mail
-		generate_token
-		created_at = Time.now
-		save!
-		send_inscription_email
+		self.generate_token
+		self.created_at = Time.now
+		self.save!
+		self.send_inscription_or_waiting_list_email
+	end
+
+	def self.import_last_excel io_or_path
+		@imported_matches = 0
+		@not_imported_indexes = []
+		@workbook = Spreadsheet.open io_or_path
+		@worksheet = @workbook.worksheet(0)
+		inscriptions  = Tournament.opened.first.inscriptions
+		users = Tournament.opened.first.users
+		0.upto @worksheet.last_row_index do |index|
+			# .row(index) will return the row which is a subclass of Array
+			row = @worksheet.row(index)
+			licence = row[6] && row[6].downcase
+			first_name = row[5] && row[5].downcase
+			last_name = row[4] && row[4].downcase
+			first_match_date = row[14]
+			p licence
+			p users.map(&:licence)
+			user = users.select do |user|
+				(user.licence.downcase && user.licence.downcase == licence) || (user.first_name.downcase == first_name && user.last_name.downcase == last_name)
+			end
+			user = user.first
+			if user && users.include?(user)
+				inscription = inscriptions.where(user_id: user.id).first
+				inscription.first_match_date = Time.zone.parse first_match_date
+				inscription.save!
+				@imported_matches+=1
+			else
+				@not_imported_indexes << index
+			end
+		end
+		return @imported_matches, @not_imported_indexes
 	end
 
 	protected
