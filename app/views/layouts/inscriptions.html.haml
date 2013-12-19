@@ -44,15 +44,16 @@
       
       #content
         =yield
-      
-    - if @next_tournament
-      #next_tournament
-        %h1 Prochain tournoi
-        %p= @next_tournament.title
-        = form_tag inscriptions_path, method: :post do 
-          = hidden_field_tag :preinscription, "1"
-          = text_field_tag :pre_inscription_email
-          = submit_tag "Valider"
+    
+    #bottom_layer  
+      - if @next_tournament
+        #next_tournament.size_50.center
+          %h1 Prochain tournoi
+          %p= @next_tournament.title
+          = form_tag inscriptions_path, method: :post do 
+            = hidden_field_tag :preinscription, "1"
+            = text_field_tag :pre_inscription_email
+            = submit_tag "Valider"
 
     #bottom_menu
     #footer

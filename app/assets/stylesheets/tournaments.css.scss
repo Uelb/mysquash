@@ -12,6 +12,8 @@ $page_25_width: $page_width * 0.25;
 
 $menu_item_width: 120px;
 
+$input_width: 170px;
+
 
 /****************
 ****  Mixins  ***
@@ -82,6 +84,8 @@ $menu_item_width: 120px;
 
 form {
 	input[type=text], input[type=email], input[type=commit] {
+		width: $input_width;
+		margin-right: 10px;
 		@include border-radius(200px);
 	}
 }
