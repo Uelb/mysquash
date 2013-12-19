@@ -12,10 +12,9 @@
  *= require_tree .
  */
 
-
-/*************************/
-/**** Fonts definition ***/
-/*************************/
+/***************************/
+/****  Fonts definition  ***/
+/***************************/
 @font-face {
     font-family: 'pt_sans_captionregular';
     src: url('ptc55f-webfont.eot');
@@ -25,7 +24,6 @@
          url('ptc55f-webfont.svg#pt_sans_captionregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -37,7 +35,6 @@
          url('ptc75f-webfont.svg#pt_sans_captionbold') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -49,7 +46,6 @@
          url('ptf55f-webfont.svg#pt_serifregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -61,7 +57,6 @@
          url('ptf56f-webfont.svg#pt_serifitalic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -73,7 +68,6 @@
          url('ptf75f-webfont.svg#pt_serifbold') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -85,7 +79,6 @@
          url('ptf76f-webfont.svg#pt_serifbold_italic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -97,7 +90,6 @@
          url('ptn57f-webfont.svg#pt_sans_narrowregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -109,7 +101,6 @@
          url('ptn77f-webfont.svg#pt_sans_narrowbold') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -121,7 +112,6 @@
          url('pts55f-webfont.svg#pt_sansregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -133,7 +123,6 @@
          url('pts56f-webfont.svg#pt_sansitalic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -145,7 +134,6 @@
          url('pts75f-webfont.svg#pt_sansbold') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -157,7 +145,6 @@
          url('pts76f-webfont.svg#pt_sansbold_italic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -169,7 +156,6 @@
          url('ptz55f-webfont.svg#pt_serif_captionregular') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -181,5 +167,4 @@
          url('ptz56f-webfont.svg#pt_serif_captionitalic') format('svg');
     font-weight: normal;
     font-style: normal;
-
 }
