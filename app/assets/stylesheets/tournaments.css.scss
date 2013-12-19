@@ -6,6 +6,10 @@
 ***  Variables  ***
 ******************/
 $page_width: 700px;
+$page_75_width: $page_width * 0.75;
+$page_50_width: $page_width * 0.5;
+$page_25_width: $page_width * 0.25;
+
 $menu_item_width: 120px;
 
 
@@ -20,8 +24,39 @@ $menu_item_width: 120px;
           border-radius: $radius;
 }
 
+/**************************
+***  Position and size  ***
+**************************/
 .clearfix {
 	clear: both;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.center {
+	margin: auto;
+}
+
+.size_100 {
+	width: $page_width; 
+}
+
+.size_75 {
+	width: $page_75_width;
+}
+
+.size_50 {
+	width: $page_50_width;
+}
+
+.size_25 {
+	width: $page_25_width
 }
 
 /*************
@@ -30,22 +65,17 @@ $menu_item_width: 120px;
 #menu {
 	background: red;
 
-	#menu_items {
-		width: $page_width;
-		margin: auto;
+	.menu_item, .menu_image, .menu_text {
+		float: left;
+	}
 
-		.menu_item, .menu_image, .menu_text {
-			float: left;
-		}
+	.menu_item {
+		width: $menu_item_width;
+		margin-right: ($page_width - 3 * $menu_item_width) / 2;
+	}
 
-		.menu_item {
-			width: $menu_item_width;
-			margin-right: ($page_width - 3 * $menu_item_width) / 2;
-		}
-
-		.menu_item:nth-of-type(3) {
-			margin-right: 0;
-		}
+	.menu_item:nth-of-type(3) {
+		margin-right: 0;
 	}
 }
 

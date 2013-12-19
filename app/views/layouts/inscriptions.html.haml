@@ -7,7 +7,7 @@
     = csrf_meta_tags
   %body
     #menu
-      #menu_items
+      #menu_items.size_100.center
         .menu_item
           .menu_image=image_tag "cup.png"
           .menu_text Les tournois
@@ -19,14 +19,19 @@
           .menu_text les leçons
         .clearfix
 
-    #tournament.clearfix
-      #tournament_introduction
+    #tournament.size_100.center
+      #tournament_introduction.size_75.center
         %h1 Inscriptions aux tournois
-        %h2= @tournament.title
-        %p= @tournament.description
-        %p= "Nombre de joueurs inscrits #{@tournament.users.count}"
+        %h2.size_50.center= @tournament.title
 
-      #inscription_panel
+      #tournament_information
+        #number_inscriptions.left.size_25
+          %p= "Nombre de joueurs inscrits #{@tournament.users.count}"
+        #description.left.size_75
+          %p= @tournament.description
+        .clearfix
+
+      #tournament_inscription.size_50.center
         %h1 Inscription
         %p Merci de bien vouloir renseigner le champ suivant :
         = form_tag inscriptions_path, method: :post, id: :tournament_form do 
