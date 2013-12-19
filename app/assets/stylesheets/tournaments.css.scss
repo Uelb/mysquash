@@ -2,16 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/******************
+***  Variables  ***
+******************/
+$page_width: 700px;
+$menu_item_width: 120px;
 
-/*****************/
-/****  Mixins  ***/
-/*****************/
+
+/****************
+****  Mixins  ***
+*****************/
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
       -ms-border-radius: $radius;
        -o-border-radius: $radius;
           border-radius: $radius;
+}
+
+.clearfix {
+	clear: both;
+}
+
+/*************
+***  Menu  ***
+*************/
+#menu {
+	background: red;
+
+	#menu_items {
+		width: $page_width;
+		margin: auto;
+
+		.menu_item, .menu_image, .menu_text {
+			float: left;
+		}
+
+		.menu_item {
+			width: $menu_item_width;
+			margin-right: ($page_width - 3 * $menu_item_width) / 2;
+		}
+
+		.menu_item:nth-of-type(3) {
+			margin-right: 0;
+		}
+	}
 }
 
 

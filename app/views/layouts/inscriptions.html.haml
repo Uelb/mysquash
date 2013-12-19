@@ -7,14 +7,19 @@
     = csrf_meta_tags
   %body
     #menu
-      .menu_image=image_tag "cup.png"
-      .menu_item Les tournois
-      .menu_image=image_tag "chariot.png"
-      .menu_item La boutique
-      .menu_image=image_tag "racket.png"
-      .menu_item les leçons
+      #menu_items
+        .menu_item
+          .menu_image=image_tag "cup.png"
+          .menu_text Les tournois
+        .menu_item
+          .menu_image=image_tag "chariot.png"
+          .menu_text La boutique
+        .menu_item
+          .menu_image=image_tag "racket.png"
+          .menu_text les leçons
+        .clearfix
 
-    #tournament
+    #tournament.clearfix
       #tournament_introduction
         %h1 Inscriptions aux tournois
         %h2= @tournament.title
