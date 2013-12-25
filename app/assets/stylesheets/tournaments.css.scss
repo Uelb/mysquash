@@ -10,10 +10,11 @@ $page_75_width: $page_width * 0.75;
 $page_50_width: $page_width * 0.5;
 $page_25_width: $page_width * 0.25;
 
-$menu_item_width: 120px;
+$menu_item_width: $page_width / 3;
 
 $input_width: 170px;
 
+$red: #ff4b61;
 
 /****************
 ****  Mixins  ***
@@ -61,31 +62,76 @@ $input_width: 170px;
 	width: $page_25_width
 }
 
+/*********************
+***  Font classes  ***
+*********************/
+* {
+	font: 15px 'pt_sansregular';
+}
+
+.bold {
+	font-family: 'pt_sansbold';
+}
+
+.red {
+	color: $red;
+}
+
+body {
+	background: url("trame.png");
+}
+
 /*************
 ***  Menu  ***
 *************/
 #menu {
-	background: red;
-
-	.menu_item, .menu_image, .menu_text {
-		float: left;
-	}
+	background: $red;
+	color: white;
 
 	.menu_item {
+		float: left;
+		margin: 1px 0;
 		width: $menu_item_width;
-		margin-right: ($page_width - 3 * $menu_item_width) / 2;
+	}
+
+	.menu_item:nth-of-type(1) {
+		text-align: left;
+	}
+
+	.menu_item:nth-of-type(2) {
+		text-align: center;
 	}
 
 	.menu_item:nth-of-type(3) {
-		margin-right: 0;
+		text-align: right;
+	}
+
+	.menu_item img {
+		vertical-align: middle;
 	}
 }
 
+#tournament {
+
+	#tournament_introduction {
+		margin-bottom: 30px;
+	}
+
+	#description {
+		font-size: 18px;
+	}
+}
 
 form {
-	input[type=text], input[type=email], input[type=commit] {
+	input[type=text], input[type=email], input[type=submit] {
 		width: $input_width;
 		margin-right: 10px;
 		@include border-radius(200px);
+	}
+
+	input[type=submit] {
+		width: inherit;
+		background: $red;
+		border: none;
 	}
 }
