@@ -6,17 +6,17 @@
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
   %body
-    #menu
+    #menu.bold
       #menu_items.size_100.center
         .menu_item
-          .menu_image=image_tag "cup.png"
-          .menu_text Les tournois
+          =image_tag "header_cup.png"
+          %span Les tournois
         .menu_item
-          .menu_image=image_tag "chariot.png"
-          .menu_text La boutique
+          =image_tag "header_cart.png"
+          %span La boutique
         .menu_item
-          .menu_image=image_tag "racket.png"
-          .menu_text les leçons
+          =image_tag "header_racket.png"
+          %span les leçons
         .clearfix
 
     #tournament.size_100.center
@@ -32,8 +32,8 @@
         .clearfix
 
       #tournament_inscription.size_50.center
-        %h1 Inscription
-        %p Merci de bien vouloir renseigner le champ suivant :
+        %h2 INSCRIPTION
+        %p.bold Merci de bien vouloir renseigner le champ suivant :
         = form_tag inscriptions_path, method: :post, id: :tournament_form do 
           = hidden_field_tag :tournament_id, @tournament.id
           = email_field_tag :email
@@ -48,7 +48,7 @@
     #bottom_layer  
       - if @next_tournament
         #next_tournament.size_50.center
-          %h1 Prochain tournoi
+          %h4.red.bold PROCHAIN TOURNOI
           %p= @next_tournament.title
           = form_tag inscriptions_path, method: :post do 
             = hidden_field_tag :preinscription, "1"
