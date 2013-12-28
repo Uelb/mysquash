@@ -45,4 +45,8 @@ gem 'haml-rails'
 'The user interface to send a mail'
 gem 'tinymce-rails'
 
+#Excel reading
 gem 'spreadsheet'
+
+# Javascript runtime
+gem 'therubyracer'
