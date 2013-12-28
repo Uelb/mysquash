@@ -10,5 +10,8 @@ test:
   database: mysquash_test
 
 production:
-  <<: *common
-  database: mysquash_prod
+  adapter: mysql
+  host: localhost
+  database: info
+  username: info
+  password: aSYafUT2j57YM2mJ

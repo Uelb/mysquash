@@ -102,6 +102,7 @@ GEM
     mime-types (1.25)
     minitest (4.7.5)
     multi_json (1.8.2)
+    nginx (0.0.2)
     orm_adapter (0.5.0)
     pg (0.17.0)
     polyamorous (0.6.4)
@@ -180,6 +181,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  nginx
   pg
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
