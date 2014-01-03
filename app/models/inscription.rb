@@ -18,7 +18,7 @@ class Inscription < ActiveRecord::Base
 		if self.waiting_list
 			UserMailer.waiting_list_validated(self).deliver
 		else
-			UserMailer.inscription_validated(self).deliver
+			# What to do in this case ? 
 		end
 	end
 
@@ -31,6 +31,7 @@ class Inscription < ActiveRecord::Base
 		if self.waiting_list
 			UserMailer.waiting_list_email(self).deliver
 		else
+			UserMailer.inscription_validated(self).deliver
 		end
 	end
 

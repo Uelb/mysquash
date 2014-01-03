@@ -5,6 +5,7 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
+    = favicon_link_tag "/assets/favicon.ico"
   %body
     #menu.bold
       #menu_items.size_100.center
@@ -43,6 +44,8 @@
         = render template: "users/registrations/new", layout: false
       
       #content
+        - if flash[:notice] || flash[:alert]
+          .notice.alert= flash[:notice] || flash[:alert]
         =yield
     
     #bottom_layer  
