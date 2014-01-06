@@ -7,20 +7,7 @@ class Inscription < ActiveRecord::Base
 	after_create :send_inscription_or_waiting_list_email
 	before_create :generate_token
 	before_create :check_tournament_limits
-
-	def validate!
-		if self.validated_by_admin
-			return
-		end
-		self.validated_by_admin = true
-		self.validation_date = DateTime.now
-		self.save!
-		if self.waiting_list
-			UserMailer.waiting_list_validated(self).deliver
-		else
-			# What to do in this case ? 
-		end
-	end
+	before_destroy :check_waiting_list
 
 	def user_validate!
 		if self.validated_by_user
@@ -28,11 +15,7 @@ class Inscription < ActiveRecord::Base
 		end
 		self.validated_by_user = true
 		self.save!
-		if self.waiting_list
-			UserMailer.waiting_list_email(self).deliver
-		else
-			UserMailer.inscription_validated(self).deliver
-		end
+		send_inscription_or_waiting_list_email
 	end
 
 	def send_inscription_or_waiting_list_email
@@ -92,8 +75,30 @@ class Inscription < ActiveRecord::Base
   	end
 
   	def check_tournament_limits
-  		if self.user.male && self.tournament.male_full? || !self.user.male && self.tournament.female_full?
+  		if self.user.male && self.tournament.male_full?
   			self.waiting_list = (self.tournament.inscriptions.pluck(:waiting_list).max||0 + 1)
+  		elsif !self.user.male && self.tournament.female_full?
+  		end
+  	end
+
+  	def check_waiting_list
+  		if self.user.male && self.tournament.male_full?
+  			male = true
+  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", true).where(waiting_list: 1)	
+  			
+  		elsif !self.user.male && self.tournament.female_full?
+  			male = false
+  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", false).where(waiting_list: 1)
+  		end
+  		if !male.nil?
+  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", male).where(waiting_list: 1)
+	  		promoted_inscription.waiting_list = nil
+			promoted_inscription.save!
+			UserMailer.waiting_list_validated(promoted_inscription).deliver
+			self.tournament.inscriptions.where("user.male = (?)", male).where.not(waiting_list: nil).each do |inscription|
+				inscription.waiting_list-=1
+				inscription.save!
+			end
   		end
   	end
 end
