@@ -1,6 +1,6 @@
 ActiveAdmin.register Tournament do
 
-  permit_params :open, :title, :description, :date, :mens_limit, :womens_limit, :published_in_next_tournament
+  permit_params :open, :title, :description, :date, :men_limit, :women_limit, :published_in_next_tournament
   
   member_action :open, :method => :get do
     tournament = Tournament.find params[:id]
