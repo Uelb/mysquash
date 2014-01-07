@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140101101243) do
+ActiveRecord::Schema.define(version: 20131209105724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 20140101101243) do
     t.datetime "date"
     t.string   "title"
     t.text     "description"
+    t.boolean  "open"
     t.integer  "men_limit"
     t.integer  "women_limit"
     t.boolean  "published_in_next_tournament"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "open"
   end
 
   create_table "users", force: true do |t|
