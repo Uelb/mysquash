@@ -22,18 +22,21 @@
         .clearfix
 
     #tournament.size_100.center
-      #tournament_introduction.size_75.center
+      #tournament_introduction.center
         %h1 Inscriptions aux tournois
-        %h2.size_50.center= @tournament.title
+        %h2.indent-title= @tournament.title
 
       #tournament_information
         #number_inscriptions.left.size_25
-          %p= "Nombre de joueurs inscrits #{@tournament.users.count}"
+          div.layout4
+            %p.inscritlayout 
+              Nombre de joueurs inscrits 
+              %span.unite= @tournament.users.count
         #description.left.size_75
           %p= @tournament.description
         .clearfix
 
-      #tournament_inscription.size_50.center
+      #tournament_inscription.center
         %h2 INSCRIPTION
         %p.bold Merci de bien vouloir renseigner le champ suivant :
         = form_tag inscriptions_path, method: :post, id: :tournament_form do 
@@ -51,7 +54,7 @@
     
     #bottom_layer  
       - if @next_tournament
-        #next_tournament.size_50.center
+        #next_tournament.center
           %h4.red.bold PROCHAIN TOURNOI
           %p= @next_tournament.title
           = form_tag inscriptions_path, method: :post do 

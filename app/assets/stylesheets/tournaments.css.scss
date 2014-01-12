@@ -5,7 +5,7 @@
 /******************
 ***  Variables  ***
 ******************/
-$page_width: 700px;
+$page_width: 1000px;
 $page_75_width: $page_width * 0.75;
 $page_50_width: $page_width * 0.5;
 $page_25_width: $page_width * 0.25;
@@ -26,7 +26,27 @@ $red: #ff4b61;
        -o-border-radius: $radius;
           border-radius: $radius;
 }
-
+@mixin box-shadow {
+  -webkit-box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.4);
+}
+@mixin text-indent {
+  text-indent:-1000em;
+  overflow:hidden;
+  outline:none;
+}
+@mixin clearfix {
+  display: inline-block;
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  * html & { height: 1px }
+}
 /**************************
 ***  Position and size  ***
 **************************/
@@ -51,7 +71,7 @@ $red: #ff4b61;
 }
 
 .size_75 {
-	width: $page_75_width;
+	width: $page_width - 310;
 }
 
 .size_50 {
@@ -59,7 +79,8 @@ $red: #ff4b61;
 }
 
 .size_25 {
-	width: $page_25_width
+	width: 300px;
+  padding-right: 10px;
 }
 
 /*********************
@@ -87,11 +108,14 @@ body {
 #menu {
 	background: $red;
 	color: white;
+  @include box-shadow;
 
 	.menu_item {
 		float: left;
 		margin: 1px 0;
 		width: $menu_item_width;
+    text-transform:uppercase;
+    font-size:15px;
 	}
 
 	.menu_item:nth-of-type(1) {
@@ -112,13 +136,25 @@ body {
 }
 
 #tournament {
-
 	#tournament_introduction {
-		margin-bottom: 30px;
+    margin-bottom:40px;
+    h1{
+      margin: 30px auto 0;
+      background:url('/assets/logo.png') no-repeat top center;
+      height:200px;
+      @include text-indent;
+    }
+    h2{
+      padding:0 0 0 310px;
+      color:#070709;
+      font-size:20px;
+      font-weight:100;
+    }
 	}
 
 	#description {
-		font-size: 18px;
+		font-size: 13px;
+    font-weight:500;
 	}
 }
 
