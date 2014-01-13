@@ -13,13 +13,13 @@
         #menu.bold
           #menu_items.size_100.center
             .menu_item
-              =image_tag "header_cup.png"
+              =image_tag "header_cup.svg"
               %span Les tournois
             .menu_item
-              =image_tag "header_cart.png"
+              =image_tag "header_cart.svg"
               %span La boutique
             .menu_item
-              =image_tag "header_racket.png"
+              =image_tag "header_racket.svg"
               %span les leçons
             .clearfix
     
@@ -43,10 +43,10 @@
                 = form_tag inscriptions_path, method: :post, id: :tournament_form do 
                   = hidden_field_tag :tournament_id, @tournament.id
                   = email_field_tag :email
+                  = submit_tag "Valider"
                   .infolegal
                     %span.asterisk *
                     Merci d'indiquer un email valide, un email de confirmation vous sera envoyé à cette adresse pour validation définitive de votre inscription.
-                  = submit_tag "Valider"
                   
         
               #registration_form
