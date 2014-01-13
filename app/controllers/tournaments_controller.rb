@@ -4,6 +4,9 @@ class TournamentsController < ApplicationController
 
     def show
         @tournament = Tournament.opened.first
+        if @tournament.nil?
+            redirect_to no_tournament_path and return 
+        end
         @males = @tournament.users.males
         @females = @tournament.users.females
         @inscriptions = @tournament.inscriptions
@@ -12,7 +15,6 @@ class TournamentsController < ApplicationController
             @current_user_inscription = @inscriptions.where(user_id: current_user.id).first
         end
         p @current_user_inscription
-        redirect_to no_tournament_path if @tournament.nil?
     end
 
 end

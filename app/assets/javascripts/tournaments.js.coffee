@@ -5,6 +5,7 @@
 handleSuccess = (data, textStatus, jqXHR) ->
 	$.post 'inscriptions', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
 		$('#content').html data
+		$("#email_confirmation").val($("#email").val())
 
 handleFailure = () ->
 	$("#registration_form #user_email").val $("#tournament_form #email").val()
@@ -13,12 +14,18 @@ handleFailure = () ->
 set_tournament_form = () ->
 	$("#tournament_form").submit (evt) ->
 		evt.preventDefault()
-		$.get("/inscriptions/check_user", {email: $("#tournament_form #email").val()})
-		.success(handleSuccess
-		)
-		.fail(handleFailure)
+		email = $("#tournament_form #email").val()
+		if email
+			$.get("/inscriptions/check_user", {email: $("#tournament_form #email").val()})
+			.success(handleSuccess
+			)
+			.fail(handleFailure)
+		else
+			alert("Vous devez entrer une adresse email.")
+			return false
 
 window.handleSuccess = handleSuccess
+window.handleFailure = handleFailure
 window.set_tournament_form = set_tournament_form
 
 $(window).bind "load", () ->

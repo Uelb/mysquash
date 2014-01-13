@@ -4,7 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+# gem 'pg'
+gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -44,4 +45,11 @@ gem 'haml-rails'
 'The user interface to send a mail'
 gem 'tinymce-rails'
 
+#Excel reading
 gem 'spreadsheet'
+
+# Javascript runtime
+gem 'therubyracer'
+
+#Change to the thin server, faster
+gem 'thin'

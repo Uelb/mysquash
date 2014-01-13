@@ -17,4 +17,9 @@ class User < ActiveRecord::Base
   def validate_user_information email, telephone_number
     return self.email == email && self.telephone_number == telephone_number
   end 
+
+  protected 
+  def password_required? 
+    false 
+  end 
 end

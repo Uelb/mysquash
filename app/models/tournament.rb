@@ -20,11 +20,12 @@ class Tournament < ActiveRecord::Base
 	end
 
 	def male_full?
-		self.users.males.count >= self.mens_limit
+		if self.men_limit.nil? then return false end
+		self.users.males.count >= self.men_limit
 	end
 
 	def female_full?
-		self.users.females.count >= self.mens_limit
+		if self.women_limit.nil? then return false end
+		self.users.females.count >= self.women_limit
 	end
-
 end

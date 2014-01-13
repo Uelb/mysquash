@@ -11,20 +11,16 @@ class InscriptionsController < ApplicationController
 		@inscription.preinscription = (params[:preinscription] == "1")
 		if @inscription.valid?
 			@inscription.save
-			render partial: "inscriptions/inscription_success"
+			redirect_to edit_inscription_path(@inscription)
 		else
 			old_inscription = @inscription.user.inscriptions.where(tournament_id: params[:tournament_id]).first
-			if old_inscription
-				if old_inscription.validated_by_user
-					text = "Vous êtes déjà inscrit à ce tournoi."
-				else
-					old_inscription.resend_inscription_mail
-					text = "Vous êtes inscrit à ce tournoi mais vous n'avez pas confirmé votre inscription. Un nouveau mail vient de vous être envoyés."
-				end
+			if old_inscription && old_inscription.validated_by_user
+				text = "Vous êtes déjà inscrit à ce tournoi. Un nouveau mail de confirmation vient de vous être envoyé"
+				old_inscription.resend_inscription_mail
+				render text: text
 			else
-				text = "Une erreur s'est produite lors de votre inscription. Veuillez réessayer et si le problème persiste, contacter l'administrateur de My Squash. The error is #{@inscription.errors}"
+				redirect_to edit_inscription_path(old_inscription)
 			end
-			render text: text
 		end
 	end
 
@@ -53,22 +49,16 @@ class InscriptionsController < ApplicationController
 		@tournament = @inscription.tournament
 		@males = @tournament.users.where(male: true)
 		@females = @tournament.users.where(male: false)
-
-		if @inscription.token != params[:token] || @inscription.created_at < 1.day.ago
-			redirect_to root_path, notice: "Vous n'êtes pas autorisé à accéder à cette page. Veuillez recommencer votre inscription"
-		end
-		if @inscription.validated_by_user
-			redirect_to root_path, notice: "Vous avez déjà validé votre inscription."
-		end
+		render :layout => false
 	end
 
 	def update
-		@inscription = Inscription.where(id: params[:id]).first
+		@inscription||= Inscription.where(id: params[:id]).first
 		@user = @inscription.user
 		notice = "Une erreur s'est produite, veuillez réessayer."
 		if @user.validate_user_information params[:email_confirmation], params[:phone_number_confirmation]
-			@inscription.
-			notice = "Votre inscription a bien été validée"
+			@inscription.send_inscription_or_waiting_list_email
+			notice = "Vous venez de recevoir un email, veuillez cliquer sur le lien présent dans l'email"
 		end
 
 		redirect_to root_path, notice: notice
@@ -83,6 +73,10 @@ class InscriptionsController < ApplicationController
   		@imported_matches, @not_imported_indexes = Inscription.import_last_excel(filename)
   		notice = "#{@imported_matches} matchs ont correctement été importés. Les lignes #{@not_imported_indexes.join(" ,")} n'ont pas été traitées"
   		redirect_to admin_dashboard_path, notice: notice
+	end
+
+	def validate 
+		Inscription.where(id: params[:id]).user_validate!
 	end
 
 end
