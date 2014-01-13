@@ -30,56 +30,22 @@ $red: #ff4b61;
 /**************************
 ***  Position and size  ***
 **************************/
-.clearfix {
-	clear: both;
-}
-
-.left {
-	float: left;
-}
-
-.right {
-	float: right;
-}
-
-.center {
-	margin: auto;
-}
-
-.size_100 {
-	width: $page_width; 
-}
-
-.size_75 {
-	width: $page_75_width;
-}
-
-.size_50 {
-	width: $page_50_width;
-}
-
-.size_25 {
-	width: $page_25_width
-}
+.clearfix { clear: both; }
+.left { float: left; }
+.right { float: right; }
+.center { margin: auto; }
+.size_100 { width: $page_width;  }
+.size_75 { width: $page_75_width; }
+.size_50 { width: $page_50_width; }
+.size_25 { width: $page_25_width }
 
 /*********************
 ***  Font classes  ***
 *********************/
-* {
-	font: 15px 'pt_sansregular';
-}
-
-.bold {
-	font-family: 'pt_sansbold';
-}
-
-.red {
-	color: $red;
-}
-
-body {
-	background: url("trame.png");
-}
+* { font: 15px 'pt_sansregular'; }
+.bold { font-family: 'pt_sansbold'; }
+.red { color: $red; }
+body { background: url("trame.png"); }
 
 /*************
 ***  Menu  ***
@@ -90,36 +56,28 @@ body {
 
 	.menu_item {
 		float: left;
-		margin: 1px 0;
+		margin: 3px 0;
 		width: $menu_item_width;
+		cursor: pointer;
 	}
 
-	.menu_item:nth-of-type(1) {
-		text-align: left;
-	}
+	.menu_item:nth-of-type(1) { text-align: left; }
 
-	.menu_item:nth-of-type(2) {
-		text-align: center;
-	}
+	.menu_item:nth-of-type(2) { text-align: center; }
 
-	.menu_item:nth-of-type(3) {
-		text-align: right;
-	}
+	.menu_item:nth-of-type(3) { text-align: right; }
 
-	.menu_item img {
+	.menu_item img { 
 		vertical-align: middle;
+		margin-right: 4px;
 	}
 }
 
 #tournament {
 
-	#tournament_introduction {
-		margin-bottom: 30px;
-	}
+	#tournament_introduction { margin-bottom: 30px; }
 
-	#description {
-		font-size: 18px;
-	}
+	#description { font-size: 18px; }
 }
 
 form {
