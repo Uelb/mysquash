@@ -9,20 +9,29 @@ class Inscription < ActiveRecord::Base
 	before_create :check_tournament_limits
 	before_destroy :check_waiting_list
 
+
+	def admin_validate!
+		if self.validated_by_admin
+			return
+		end
+		self.validated_by_admin = true
+		self.save!
+		send_inscription_validated_or_waiting_list_email
+	end
+
 	def user_validate!
 		if self.validated_by_user
 			return
 		end
 		self.validated_by_user = true
 		self.save!
-		send_inscription_or_waiting_list_email
 	end
 
-	def send_inscription_or_waiting_list_email
+	def send_inscription_validated_or_waiting_list_email
 		if self.waiting_list
 			UserMailer.waiting_list_email(self).deliver
 		else
-			UserMailer.inscription_email(self).deliver
+			UserMailer.inscription_validated(self).deliver
 		end
 	end
 
@@ -30,7 +39,7 @@ class Inscription < ActiveRecord::Base
 		self.generate_token
 		self.created_at = Time.now
 		self.save!
-		self.send_inscription_or_waiting_list_email
+		UserMailer.inscription_email(self).deliver
 	end
 
 	def self.import_last_excel io_or_path
@@ -76,9 +85,14 @@ class Inscription < ActiveRecord::Base
 
   	def check_tournament_limits
   		if self.user.male && self.tournament.male_full?
-  			self.waiting_list = (self.tournament.inscriptions.pluck(:waiting_list).max||0 + 1)
+  			male = true
   		elsif !self.user.male && self.tournament.female_full?
+  			male = false
   		end
+  		if !male.nil?
+  			 self.waiting_list = (self.tournament.inscriptions.where("user.male = (?)", male).where.not(waiting_list: nil).count + 1)
+			self.save!
+		end
   	end
 
   	def check_waiting_list
