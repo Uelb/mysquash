@@ -12,9 +12,10 @@ $page_25_width: $page_width * 0.25;
 
 $menu_item_width: $page_width / 3;
 
-$input_width: 170px;
+$input_width: 200px;
 
 $red: #ff4b61;
+$grey: #787878;
 
 /****************
 ****  Mixins  ***
@@ -36,6 +37,10 @@ $red: #ff4b61;
   overflow:hidden;
   outline:none;
 }
+@mixin inputshadow{
+  -webkit-box-shadow:inset 0 1px 2px 0 rgba(100,100,100,0.2);
+  box-shadow:inset 0 1px 2px 0 rgba(100,100,100,0.2);
+}
 @mixin clearfix {
   display: inline-block;
   &:after {
@@ -51,7 +56,15 @@ $red: #ff4b61;
 ***  Position and size  ***
 **************************/
 .clearfix {
-	clear: both;
+	display: inline-block;
+  &:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+  * html & { height: 1px }
 }
 
 .left {
@@ -93,14 +106,21 @@ $red: #ff4b61;
 .bold {
 	font-family: 'pt_sansbold';
 }
+.upper{text-transform:uppercase;}
 
 .red {
 	color: $red;
 }
-
-body {
-	background: url("trame.png");
+body{  
+  background: #f6f6f6;  
+  #wrapper {
+    background: url("bg-home.jpg") repeat-x bottom center #f6f6f6;
+	   #trame{
+      background: url("trame.png");
+    }
+  }
 }
+
 
 /*************
 ***  Menu  ***
@@ -149,25 +169,273 @@ body {
       color:#070709;
       font-size:20px;
       font-weight:100;
+      font-family: 'Muli', sans-serif;
     }
 	}
-
+  #tournament_information{
+    min-height:850px;
+    .layout4{
+      background:url('/assets/layer-4.png') no-repeat left top;
+      width:280px;
+      height:104px;
+      p{
+        padding:0;
+        margin: -15px 0 0 0;
+        .area{
+          padding:25px 0 25px 25px;
+          text-indent: 15px;
+          display: block;
+          width: 122px;
+          float: left;
+          font-family: 'pt_sansregular';
+          font-weight: 300;
+        }
+        .unite{
+          background: url("/assets/unite.png") repeat-x left top;
+          color: rgba(85, 85, 85, 0.5);
+          width: 89px;
+          text-align: right;
+          height: 59px;
+          padding-right: 2px;
+          line-height: 56px;
+          font-size: 53px;
+          display: block;
+          margin-top: 22px;
+          float: left;     
+          margin-left:5px;
+        }
+      }
+    }
+    h2.title{
+      color:#070709;
+      font-size:36px;
+      font-weight:100;
+      font-family: 'Muli', sans-serif;
+      margin:0;
+      text-transform:uppercase;
+      width:560px;
+    }
+  }
 	#description {
 		font-size: 13px;
     font-weight:500;
+    font-family:'pt_sansregular';
+    #tournament_inscription{
+      margin-bottom:65px;
+    }
 	}
+  
+}
+
+#participants_list{
+  margin-top:20px;
+  font-family:'pt_sansregular';
+  font-weight:300;
+  text-transform:uppercase;
+  .box-inscrit{
+    font-size:20px;
+    @include clearfix;
+    width:100%;
+    background:url(ombre.png) no-repeat bottom center;
+    width:420px;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    .number{
+        
+      font-size:46px;
+      display:block;
+      width:50px;
+      height:55px;
+      float:left;
+      padding-left:60px;
+      text-align:right;
+    }
+    .tite{
+      width: 195px;
+      display: block;
+      float: left;
+      margin-left: 10px;
+      line-height:18px;
+      margin-top:8px;
+    }
+    
+  }
+  .line-user, .line-user-header{
+      color:#646464;
+      font-size:12px;
+      @include clearfix;
+      display:block;
+      margin-bottom:2px;
+      div{
+        display:block;
+        float:left;
+        font-size:12px;
+        min-height:10px;
+      }
+      .licence{width:100px;}
+      .name{width:150px;}
+      .asso{width:70px;}
+      .validation{width:110px;}
+  }
+  .line-user-header{
+    div{color:#000; font-weight:bold;}
+  }
+  #males{
+    padding-bottom:40px;
+    .number{
+      background:url(male.png) no-repeat left top;
+    }
+  }
+  #females{    
+    padding-bottom:40px;
+    .number{
+      background:url(female.png) no-repeat left top;
+    }
+  }
+}
+
+#inscription_confirmation{
+  margin-bottom:30px;
+  .identity{
+    text-transform:uppercase;
+    color: $grey;
+  }
+  .user_information{    
+    text-transform:uppercase;
+    color:#000;
+    font-size:14px;
+  }
+  .thanks{
+    color:$grey;
+    padding:10px 0;
+  }
+}
+
+#bottom_layer{
+  width: 370px;
+  padding-left: 180px;
+  background: url(coupe.png) no-repeat left center;
+  height: 280px;
+  margin: 50px auto;  
+  .tournoi_title{
+    font-size:24px;
+    margin:0;
+  }
+  .desc{
+    font-size:22px;
+  }
+  .info{
+    width: 240px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+}
+
+#registration_form{
+  .error-title{
+    color:$red;
+    font-weight:900;
+    font-family: 'pt_sansbold';
+    padding:5px 0;
+    text-transform:uppercase;
+  }
+  .info{
+    color:$grey;
+    padding-bottom:15px;
+  }
+  margin-bottom:30px;
+  width:560px;
+}
+
+a.link{
+  display:block;
+  padding:5px 0 0 0;
+  color:#000;
+}
+.alert{
+  color:$red;
+  font-weight:900;
 }
 
 form {
+  &#tournament_form{
+    width:470px;
+    input#email{
+      margin-right:100px
+    }
+  }
+  .field{
+    display:block;
+    padding-bottom:10px;
+  }
+  .radio-male, .radio-female{
+    display:inline-block;
+    width:90px;
+    color:$grey;
+  }
+  textarea{
+    background:#eee;
+    font-size:13px;
+    padding:3px 5px;
+    display:block;
+    font-weight:100;
+    margin:15px 0;
+    min-height:95px;
+		@include border-radius(3px);
+    &.comment_input{
+      width: 425px;
+    }
+  }
 	input[type=text], input[type=email], input[type=submit] {
 		width: $input_width;
 		margin-right: 10px;
 		@include border-radius(200px);
 	}
-
+  input#email{
+    background:#eee;
+    font-size:13px;
+    padding:3px 5px;
+    @include inputshadow;
+    font-weight:100;
+    margin-right:100px
+  }
+  input[type=text], input[type=email]{
+    background:#eee;
+    &.special_input{
+      background:#fff;
+    }
+    font-size:13px;
+    padding:3px 5px;
+    @include inputshadow;
+    font-weight:100;
+    margin-right:10px;
+  }
 	input[type=submit] {
-		width: inherit;
 		background: $red;
 		border: none;
+    width:80px;
+    text-shadow:none;
+    &.send{
+      width:200px;
+    }
 	}
+  .infolegal{    
+    margin: 10px 0;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'pt_sansregular';
+    line-height: 11px;
+    width: 390px;
+    .asterisk{
+      font-family: 'pt_sansbold';
+      color: $red;
+      font-size: 40px;
+      float: left;
+      vertical-align: top;
+      display: block;
+      height: 20px;
+      line-height: 38px;
+      margin-right: 5px;
+    }
+  }
 }
