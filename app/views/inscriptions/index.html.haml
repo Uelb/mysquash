@@ -1,28 +1,52 @@
 -# coding: utf-8
 - if @current_user
-  =link_to('Logout', destroy_user_session_path, :method => :delete)
+  =link_to('Déconnexion', destroy_user_session_path, :method => :delete)
+%h2.title Liste des <strong>joueurs inscrits</strong> au tournoi
 #participants_list
   #males
     - if @males.count > 1
-      = "#{@males.count} joueurs inscrits pour les hommmes"
+      .box-inscrit
+        %span.number= @males.count 
+        %span.tite joueurs inscrits pour les hommmes
     - else
-      = "#{@males.count} joueur inscrit pour les hommmes"
+      .box-inscrit
+        %span.number= @males.count 
+        %span.tite joueur inscrit pour les hommmes
+    
+    - if @males.count > 0  
+      .line-user-header
+        .licence N°license
+        .name Prénom, Nom
+        .asso Asso
+        .validation Validation
+      
     - @males.each do |user|
-      .licence= user.licence
-      .name= user.name
-      .asso= user.association_name
-      - if @current_user == user
-        -if @current_user_inscription.validated_by_admin
-          .validation=  "OK (#{@current_user_inscription.validation_date.to_formatted_s(:short)})" 
-        - else
-          .validation= "NON VALIDÉ"
+      .line-user
+        .licence= user.licence
+        .name= user.name
+        .asso= user.association_name
+        - if @current_user == user
+          -if @current_user_inscription.validated_by_admin
+            .validation=  "OK (#{@current_user_inscription.validation_date.to_formatted_s(:short)})" 
+          - else
+            .validation= "NON VALIDÉ"
 
   #females
     - if @females.count > 1
-      = "#{@females.count} joueurs inscrits pour les femmes"
-    - else
-      = "#{@females.count} joueur inscrit pour les femmes"
-
+      .box-inscrit
+        %span.number= @females.count 
+        %span.tite joueurs inscrit pour les femmes
+    - else      
+      .box-inscrit
+        %span.number= @females.count 
+        %span.tite joueur inscrit pour les femmes
+    - if @females.count > 0   
+      .line-user-header
+        .licence-head N°license
+        .name Prénom, Nom
+        .asso Asso
+        .validation Validation
+      
     - @females.each do |user|
       .licence= user.licence
       .name= user.name
