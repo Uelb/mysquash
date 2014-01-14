@@ -298,6 +298,32 @@ body{
     background:rgba(0,0,0,.9);
   }
 }
+
+#tournament_participants {
+  h2.title {
+    font-size: 36px;
+    font-family: 'Muli', sans-serif;
+    margin: 0;
+    text-transform: uppercase;
+    color: white;
+  }
+
+  body.popin &{
+    padding-top: 30px;
+    position:relative;
+    width:$wrap;
+    margin:50px auto;
+    height:100%; 
+
+    * { color: white; }
+    .line-user-header div { color: white; }
+    .category {
+      width: $wrap / 2;
+      float: left;
+    }
+  }
+}
+
 #inscription_confirmation{
   body.popin &{
     position:relative;
