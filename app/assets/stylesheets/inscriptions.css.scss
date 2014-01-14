@@ -2,6 +2,34 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/******************
+***  Variables  ***
+******************/
+$page_width: 1000px;
+$page_75_width: $page_width * 0.75;
+$page_50_width: $page_width * 0.5;
+
 #registration_form{
 	display:none;
+}
+
+#overlay_wrapper { background: url("bg-overlay.png"); }
+
+#inscriptions_overlay {
+	padding-top: 30px;
+
+	* { color: white; }
+	h2.title {
+      font-size: 36px;
+      font-family: 'Muli', sans-serif;
+      margin: 0;
+      text-transform: uppercase;
+    }
+	#participants_list{
+		.line-user-header div { color: white; }
+		.category {
+			width: $page_50_width;
+			float: left;
+		}
+	}
 }
