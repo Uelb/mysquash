@@ -2,7 +2,10 @@
 - if @current_user
   =link_to('Déconnexion', destroy_user_session_path, :method => :delete)
 
-%h2.title Liste des <strong>joueurs inscrits</strong> au tournoi
+%h2.title
+  Liste des 
+  %strong joueurs inscrits
+  au tournoi
 #participants_list.clearfix
   #males.category
     .box-inscrit
@@ -24,11 +27,11 @@
         .licence= user.licence
         .name= user.name
         .asso= user.association_name
-        - if @current_user == user
-          - if @current_user_inscription.validated_by_admin
-            .validation=  "OK (#{@current_user_inscription.validation_date.to_formatted_s(:short)})" 
-          - else
-            .validation= "NON VALIDÉ"
+        - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+        - if @inscription.validated_by_admin
+          .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
+        - else
+          .validation= "NON VALIDÉ"
 
   #females.category
     .box-inscrit
@@ -49,7 +52,8 @@
       .licence= user.licence
       .name= user.name
       .asso= ""
-      - if @inscriptions.select{|inscription| inscription.user_id == user.id}.first.validated_by_admin then
-        .validation=  "OK (#{validation_date.to_formatted_s(:short)})" 
+      - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+      - if @inscription.validated_by_admin then
+        .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
       - else
         .validation= "NON VALIDÉ"

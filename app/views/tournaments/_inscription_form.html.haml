@@ -1,0 +1,34 @@
+#tournament.size_100.center
+  #tournament_introduction.center
+    %h1 Inscriptions aux tournois
+    %h2.indent-title= @tournament.title
+
+  #tournament_information.clearfix
+    #number_inscriptions.left.size_25
+      .layout4
+        %p.inscritlayout
+          %span.area Nombre de joueurs inscrits
+          %span.unite= @tournament.users.count
+          .clearfix
+    #description.left.size_75
+      %p= @tournament.description
+      #tournament_inscription.center
+        %h2.title INSCRIPTION
+        %p.bold.upper Merci de bien vouloir renseigner le champ suivant :
+        = form_tag inscriptions_path, method: :post, id: :tournament_form do 
+          = hidden_field_tag :tournament_id, @tournament.id
+          = email_field_tag :email
+          = submit_tag "Valider"
+          .infolegal
+            %span.asterisk *
+            Merci d'indiquer un email valide, un email de confirmation vous sera envoyé à cette adresse pour validation définitive de votre inscription.
+          
+
+      #registration_form
+        = render template: "users/registrations/new", layout: false
+      
+      #content
+        - if flash[:notice] || flash[:alert]
+          .notice.alert= flash[:notice] || flash[:alert]
+        #result_wrapper
+        =yield
