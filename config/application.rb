@@ -16,5 +16,6 @@ module Mysquash
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = 'Paris'
     config.encoding = "utf-8"
+    I18n.default_locale = :fr
   end
 end

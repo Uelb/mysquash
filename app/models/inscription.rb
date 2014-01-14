@@ -4,8 +4,6 @@ class Inscription < ActiveRecord::Base
 	validates_presence_of :user_id, :tournament_id
 	validates_uniqueness_of :user_id, scope: :tournament_id
 
-	after_create :send_inscription_or_waiting_list_email
-	before_create :generate_token
 	before_create :check_tournament_limits
 	before_destroy :check_waiting_list
 
@@ -17,14 +15,6 @@ class Inscription < ActiveRecord::Base
 		self.validated_by_admin = true
 		self.save!
 		send_inscription_validated_or_waiting_list_email
-	end
-
-	def user_validate!
-		if self.validated_by_user
-			return
-		end
-		self.validated_by_user = true
-		self.save!
 	end
 
 	def send_inscription_validated_or_waiting_list_email
@@ -75,13 +65,6 @@ class Inscription < ActiveRecord::Base
 	end
 
 	protected
-
-  	def generate_token
-    	self.token = loop do
-      		random_token = SecureRandom.urlsafe_base64(nil, false)
-      		break random_token unless Inscription.exists?(token: random_token)
-    	end
-  	end
 
   	def check_tournament_limits
   		if self.user.male && self.tournament.male_full?

@@ -14,4 +14,18 @@ ActiveAdmin.register User do
   #  permitted
   # end
   
+  index do
+    column :email
+    column :created_at
+    column :first_name
+    column :last_name
+    column :licence
+    column :association_name
+    column :male
+    column :telephone_number
+    column :confirmed_at
+    default_actions
+  end
+
+
 end

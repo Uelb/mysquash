@@ -2,19 +2,19 @@
 
 ActiveAdmin.register Inscription do
 
-  batch_action :validate do |selection|
+  batch_action :valider do |selection|
     Inscription.find(selection).each do |inscription|
       inscription.validate!
     end
 
-    redirect_to collection_path, :notice => "Inscriptions validated!"
+    redirect_to collection_path, :notice => "Inscriptions validées!"
 
   end
 
   member_action :validate, method: :put do 
   	inscription = Inscription.find params[:id]
-  	inscription.validate!
-  	redirect_to collection_path, notice: "Inscription Validated"
+  	inscription.admin_validate!
+  	redirect_to collection_path, notice: "Inscription validées"
   end
 
   collection_action :fill_first_match_dates, method: :put do
@@ -23,7 +23,7 @@ ActiveAdmin.register Inscription do
   end
 
   action_item only: :show do 
-  	link_to "Validate", validate_admin_inscription_path(inscription), method: :put
+  	link_to "Valider", validate_admin_inscription_path(inscription), method: :put
   end
 
   form do |f|
@@ -32,6 +32,19 @@ ActiveAdmin.register Inscription do
   		f.input :first_match_date
   	end	
   	f.actions
+  end
+
+  index do 
+    selectable_column    
+    column :validated_by_admin
+    column :preinscription
+    column :created_at
+    column :comment
+    column :waiting_list
+    column :first_match_date
+    actions defaults: true do |inscription|
+      link_to "Valider", validate_admin_inscription_path(inscription), method: :put
+    end
   end
   
 end

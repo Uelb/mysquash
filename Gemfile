@@ -4,8 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-# gem 'pg'
-gem 'mysql2'
+gem 'pg'
+#gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -35,6 +35,7 @@ end
 
 # Management of the users of the application
 gem 'devise'
+gem 'devise-i18n'
 
 # The admin panel of the application
 gem 'activeadmin', github: 'gregbell/active_admin'
@@ -53,3 +54,4 @@ gem 'therubyracer'
 
 #Change to the thin server, faster
 gem 'thin'
+

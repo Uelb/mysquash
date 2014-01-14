@@ -367,14 +367,15 @@ body{
   }
 }
 
+.error-title{
+  color:$red;
+  font-weight:900;
+  font-family: 'pt_sansbold';
+  padding:5px 0;
+  text-transform:uppercase;
+}
+
 #registration_form{
-  .error-title{
-    color:$red;
-    font-weight:900;
-    font-family: 'pt_sansbold';
-    padding:5px 0;
-    text-transform:uppercase;
-  }
   .info{
     color:$grey;
     padding-bottom:15px;

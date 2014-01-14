@@ -55,6 +55,7 @@
               #content
                 - if flash[:notice] || flash[:alert]
                   .notice.alert= flash[:notice] || flash[:alert]
+                #result_wrapper
                 =yield
         
         #bottom_layer  

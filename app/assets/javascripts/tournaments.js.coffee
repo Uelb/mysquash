@@ -3,11 +3,22 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 handleSuccess = (data, textStatus, jqXHR) ->
-	$.post 'inscriptions', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
-		$('#content').html data
-		$("#email_confirmation").val($("#email").val())
+	console.log(jqXHR)
+	$("#registration_form").hide()
+	if jqXHR.status == 201
+		#Then the user is created but has not confirmed is email. A new confirmation email has been sent. 
+		#We should notify the user of this new email and hide the registration form if already opened
+		$("#content .error-title").remove()
+		$('#result_wrapper').html(data)
+	else if jqXHR.status == 200
+		#The user is recognized. We nees to make sure that the person asking for the inscription is the correct person.
+		$.get '/inscriptions/new', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
+			$(".notice.alert").remove()
+			$("#email").val("")
+			$('#result_wrapper').html(data)
 
-handleFailure = () ->
+handleFailure = (data) ->
+	console.log(data)
 	$("#registration_form #user_email").val $("#tournament_form #email").val()
 	$("#registration_form").show()
 
