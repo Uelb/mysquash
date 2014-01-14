@@ -16,6 +16,7 @@ $input_width: 200px;
 
 $red: #ff4b61;
 $grey: #787878;
+$wrap : 960px;
 
 /****************
 ****  Mixins  ***
@@ -287,8 +288,23 @@ body{
     }
   }
 }
-
+.popin{
+  .wrap-popin{
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    background:rgba(0,0,0,.9);
+  }
+}
 #inscription_confirmation{
+  body.popin &{
+    position:relative;
+    width:$wrap;
+    margin:50px auto;
+    height:100%;    
+  }
   margin-bottom:30px;
   .identity{
     text-transform:uppercase;
