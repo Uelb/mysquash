@@ -35,7 +35,9 @@ ActiveAdmin.register Inscription do
   end
 
   index do 
-    selectable_column    
+    selectable_column  
+    column :user
+    column :tournament
     column :validated_by_admin
     column :preinscription
     column :created_at

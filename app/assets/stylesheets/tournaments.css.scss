@@ -115,9 +115,9 @@ $wrap : 960px;
 body{  
   background: #f6f6f6;  
   #wrapper {
-    background: url("bg-home.jpg") repeat-x bottom center #f6f6f6;
+    background: image-url('bg-home.jpg') repeat-x bottom center #f6f6f6;
 	   #trame{
-      background: url("trame.png");
+      background: image-url('trame.png');
     }
   }
 }
@@ -156,7 +156,7 @@ body{
 	#tournament_introduction {
     margin-bottom:40px;
     h1{
-      background:url('/assets/logo.png') no-repeat top center;
+      background:image-url('logo.png') no-repeat top center;
       height:200px;
       @include text-indent;
     }
@@ -171,7 +171,7 @@ body{
   #tournament_information{
     min-height:850px;
     .layout4{
-      background:url('/assets/layer-4.png') no-repeat left top;
+      background:image-url('layer-4.png') no-repeat left top;
       width:280px;
       height:104px;
       p{
@@ -187,7 +187,7 @@ body{
           font-weight: 300;
         }
         .unite{
-          background: url("/assets/unite.png") repeat-x left top;
+          background: image-url('unite.png') repeat-x left top;
           color: rgba(85, 85, 85, 0.5);
           width: 89px;
           text-align: right;
@@ -232,7 +232,7 @@ body{
     font-size:20px;
     @include clearfix;
     width:100%;
-    background:url(ombre.png) no-repeat bottom center;
+    background: image-url('ombre.png') no-repeat bottom center;
     width:420px;
     padding-bottom: 15px;
     margin-bottom: 20px;
@@ -278,13 +278,13 @@ body{
   #males{
     padding-bottom:40px;
     .number{
-      background:url(male.png) no-repeat left top;
+      background:image-url('male.png') no-repeat left top;
     }
   }
   #females{    
     padding-bottom:40px;
     .number{
-      background:url(female.png) no-repeat left top;
+      background:image-url('female.png') no-repeat left top;
     }
   }
 }
@@ -350,7 +350,7 @@ body{
 #bottom_layer{
   width: 370px;
   padding-left: 180px;
-  background: url(coupe.png) no-repeat left center;
+  background: image-url('coupe.png') no-repeat left center;
   height: 280px;
   margin: 50px auto;  
   .tournoi_title{
