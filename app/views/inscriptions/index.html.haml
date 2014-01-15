@@ -1,59 +1,57 @@
 -# coding: utf-8
-- if @current_user
-  =link_to('Déconnexion', destroy_user_session_path, :method => :delete)
-
-%h2.title
-  Liste des 
-  %strong joueurs inscrits
-  au tournoi
-#participants_list.clearfix
-  #males.category
-    .box-inscrit
-      %span.number= @males.count
-      - if @males.count > 1 
-        %span.tite joueurs inscrits hommmes
-      - else
-        %span.tite joueur inscrit hommmes
-    
-    - if @males.count > 0  
-      .line-user-header
-        .licence N°license
-        .name Prénom, Nom
-        .asso Asso
-        .validation Validation
+#tournament_participants
+  %h2.title
+    Liste des 
+    %strong joueurs inscrits
+    au tournoi
+  #participants_list.clearfix
+    #males.category
+      .box-inscrit
+        %span.number= @males.count
+        - if @males.count > 1 
+          %span.tite joueurs inscrits hommmes
+        - else
+          %span.tite joueur inscrit hommmes
       
-    - @males.each do |user|
-      .line-user
+      - if @males.count > 0  
+        .line-user-header
+          .licence N°license
+          .name Prénom, Nom
+          .asso Asso
+          .validation Validation
+        
+      - @males.each do |user|
+        .line-user
+          .licence= user.licence
+          .name= user.name
+          .asso= user.association_name
+          - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+          - if @inscription.validated_by_admin
+            .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
+          - else
+            .validation= "NON VALIDÉ"
+
+    #females.category
+      .box-inscrit
+        %span.number= @females.count 
+        - if @females.count > 1
+          %span.tite joueuses inscrites femmes
+        - else
+          %span.tite joueuse inscrite femmes
+
+      - if @females.count > 0   
+        .line-user-header
+          .licence-head N°license
+          .name Prénom, Nom
+          .asso Asso
+          .validation Validation
+        
+      - @females.each do |user|
         .licence= user.licence
         .name= user.name
-        .asso= user.association_name
+        .asso= ""
         - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
-        - if @inscription.validated_by_admin
+        - if @inscription.validated_by_admin then
           .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
         - else
           .validation= "NON VALIDÉ"
-
-  #females.category
-    .box-inscrit
-      %span.number= @females.count 
-      - if @females.count > 1
-        %span.tite joueuses inscrites femmes
-      - else
-        %span.tite joueuse inscrite femmes
-
-    - if @females.count > 0   
-      .line-user-header
-        .licence-head N°license
-        .name Prénom, Nom
-        .asso Asso
-        .validation Validation
-      
-    - @females.each do |user|
-      .licence= user.licence
-      .name= user.name
-      .asso= ""
-      - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
-      - if @inscription.validated_by_admin then
-        .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
-      - else
-        .validation= "NON VALIDÉ"

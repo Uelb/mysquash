@@ -1,0 +1,49 @@
+-# coding: utf-8
+.wrap-popin
+  #tournament_participants
+    #participants_list.clearfix
+      #males.category
+        .box-inscrit
+          %span.number= @males.count
+          - if @males.count > 1 
+            %span.tite joueurs inscrits hommmes
+          - else
+            %span.tite joueur inscrit hommmes
+        
+        - if @males.count > 0  
+          .line-user-header
+            .name Prénom, Nom
+            .match 1er match
+          
+        - @males.each do |user|
+          .line-user
+            .name= user.name
+            - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+            .match= I18n.l(@inscription.first_match_date, format: :short)
+            - if @inscription.id == @current_user_inscription.id
+              .confirmation_button
+              - if @inscription.validated_by_user
+                Confirmé
+              - else
+                = link_to "Confirmer", edit_inscription_path(@inscription)
+
+      #females.category
+        .box-inscrit
+          %span.number= @females.count 
+          - if @females.count > 1
+            %span.tite joueuses inscrites femmes
+          - else
+            %span.tite joueuse inscrite femmes
+
+        - if @females.count > 0   
+          .line-user-header
+            .name Prénom, Nom
+            .match 1er match
+          
+        - @females.each do |user|
+          .line-user
+            .name= user.name
+            - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+            .match= @inscription.first_match_date
+            - if @inscription == @current_user_incription
+              .toto "toto"

@@ -14,7 +14,21 @@ class TournamentsController < ApplicationController
         if current_user
             @current_user_inscription = @inscriptions.where(user_id: current_user.id).first
         end
-        p @current_user_inscription
+        if $website_special_mode
+            if current_user
+                redirect_to popin_index_path
+            else
+                render layout: "popin"
+            end
+        else
+            if current_user
+                sign_out current_user
+            end
+        end
+    end
+
+    def matches_index
+        @tournament = Tournament.opened.first
     end
 
 end

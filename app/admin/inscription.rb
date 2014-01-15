@@ -2,6 +2,8 @@
 
 ActiveAdmin.register Inscription do
 
+  permit_params :first_match_date, :comment
+
   batch_action :valider do |selection|
     Inscription.find(selection).each do |inscription|
       inscription.validate!

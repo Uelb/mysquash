@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140114093856) do
+ActiveRecord::Schema.define(version: 20140115073451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20140114093856) do
     t.text     "comment"
     t.integer  "waiting_list"
     t.datetime "first_match_date"
+    t.boolean  "validated_by_user",  default: false
   end
 
   create_table "tournaments", force: true do |t|

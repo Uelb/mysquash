@@ -15,7 +15,21 @@ ActiveAdmin.register_page "Dashboard" do
       end
   end
 
-  content :title => proc{ I18n.t("active_admin.dashboard") } do
+  page_action :switch_mode do 
+    $website_special_mode = !$website_special_mode
+    redirect_to admin_dashboard_path, :notice => "Le site a correctement changé de mode."
+  end
+
+  action_item do 
+    if $website_special_mode
+      text = "Passer le site en mode normal"
+    else
+      text = "Passer le site en mode d'affichage des horaires"
+    end
+    link_to(text, "/admin/dashboard/switch_mode")
+  end
+
+  content :title => proc{ I18n.t("active_admin.dashboard") + " : Le site est en mode #{if $website_special_mode then 'd\'affichage des horaires' else 'normal' end }"} do
     if Tournament.opened.first
       panel "Les matches pour le prochain tournoi." do
         @inscriptions = Tournament.opened.first.inscriptions

@@ -18,6 +18,11 @@ class Inscription < ActiveRecord::Base
 		send_inscription_validated_or_waiting_list_email
 	end
 
+	def user_validate!
+		self.validated_by_user = true
+		self.save!
+	end
+
 	def send_inscription_validated_or_waiting_list_email
 		if self.waiting_list
 			UserMailer.waiting_list_email(self).deliver

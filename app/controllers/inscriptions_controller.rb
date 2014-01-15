@@ -55,14 +55,14 @@ class InscriptionsController < ApplicationController
 		render layout: false
 	end
 
-	def edit
-		@inscription = Inscription.where(id: params[:id]).first
-		@user = @inscription.user
-		@tournament = @inscription.tournament
-		@males = @tournament.users.where(male: true)
-		@females = @tournament.users.where(male: false)
-		render :layout => false
+	def edit 
+		inscription = Inscription.where(id: params[:id]).first
+		if inscription.user_id == current_user.id
+			inscription.user_validate!
+		end
+		redirect_to root_path
 	end
+
 
 	def update
 		@inscription||= Inscription.where(id: params[:id]).first
@@ -89,6 +89,30 @@ class InscriptionsController < ApplicationController
 
 	def validate 
 		Inscription.where(id: params[:id]).user_validate!
+	end
+
+	def popin_index
+		if !$website_special_mode
+			redirect_to root_path and return 
+		end
+		if current_user
+			user = current_user
+		else
+			user = User.where(email: params[:popin_email], telephone_number: params[:popin_phone_number]).first
+		end
+		if user
+			sign_in user
+			@tournament = Tournament.includes(:users, :inscriptions => :user).opened.first
+			@inscriptions = @tournament.inscriptions
+			@males = @tournament.users.where(male: true)
+			@females = @tournament.users.where(male: false)
+			if current_user
+		      @current_user_inscription = @inscriptions.where(user_id: current_user.id).first
+			end
+			render layout: "popin"
+		else
+			redirect_to root_path, alert: "Nous n'avons pas réussi à vous identifier... Veuillez réessayer."
+		end
 	end
 
 end
