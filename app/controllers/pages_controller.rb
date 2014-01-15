@@ -4,4 +4,9 @@ class PagesController < ApplicationController
 		
 		
 	end
+
+	def lecons
+		@rubriques = Rubrique.all
+		render layout: "lecons"
+	end
 end

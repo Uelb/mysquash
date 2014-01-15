@@ -3,6 +3,7 @@ Mysquash::Application.routes.draw do
 	match 'no_tournament', to: 'pages#no_tournament', via: :get
 	match 'inscriptions/upload', to: 'inscriptions#upload', via: [:get, :post]
 	match 'popin_index', to: 'inscriptions#popin_index', via: [:get, :post]
+	match 'lecons', to: 'pages#lecons', via: :get
 
 	devise_for :users
 	devise_for :admin_users, ActiveAdmin::Devise.config
