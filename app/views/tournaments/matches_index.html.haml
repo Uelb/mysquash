@@ -1,5 +1,6 @@
 .wrap-popin
   #inscription_confirmation
+    .close Fermer
     .thanks Merci de bien vouloir nous confirmer:
     = form_tag popin_index_path, method: :post do 
       = hidden_field_tag :tournament_id, @tournament.id

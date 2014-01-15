@@ -349,6 +349,13 @@ body{
   .footer_message {
     margin-top: 20px;
   }
+  .close {
+    height: 44px;
+    float: right;
+    background: image-url('close.png') no-repeat right;
+    padding-right: 50px;
+    line-height: 44px;
+  }
 }
 
 #bottom_layer{
