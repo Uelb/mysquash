@@ -22,6 +22,7 @@ class TournamentsController < ApplicationController
             end
         else
             if current_user
+                @current_user_email = current_user.email
                 sign_out current_user
             end
         end

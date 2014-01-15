@@ -13,7 +13,7 @@ class Inscription < ActiveRecord::Base
 			return
 		end
 		self.validated_by_admin = true
-		self.validated_date = DateTime.now
+		self.validation_date = DateTime.now
 		self.save!
 		send_inscription_validated_or_waiting_list_email
 	end

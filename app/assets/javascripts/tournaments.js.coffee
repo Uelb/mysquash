@@ -14,8 +14,8 @@ handleSuccess = (data, textStatus, jqXHR) ->
 		#The user is recognized. We nees to make sure that the person asking for the inscription is the correct person.
 		$.get '/inscriptions/new', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
 			$(".notice.alert").remove()
-			$("#email").val("")
 			$('#result_wrapper').html(data)
+			$("#email_confirmation").val($("#email").val())
 
 handleFailure = (data) ->
 	console.log(data)

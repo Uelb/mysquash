@@ -19,7 +19,7 @@
           .line-user
             .name= user.name
             - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
-            .match= I18n.l(@inscription.first_match_date, format: :short)
+            .match= I18n.l(@inscription.try(:first_match_date), format: :short)
             - if @inscription.id == @current_user_inscription.id
               .confirmation_button
               - if @inscription.validated_by_user

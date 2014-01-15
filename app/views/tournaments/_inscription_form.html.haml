@@ -17,7 +17,7 @@
         %p.bold.upper Merci de bien vouloir renseigner le champ suivant :
         = form_tag inscriptions_path, method: :post, id: :tournament_form do 
           = hidden_field_tag :tournament_id, @tournament.id
-          = email_field_tag :email
+          = email_field_tag :email, @current_user_email
           = submit_tag "Valider"
           .infolegal
             %span.asterisk *
