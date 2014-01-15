@@ -1,16 +1,16 @@
 .wrap-popin
-  #inscription_edit 
+  #inscription_confirmation
     .thanks Merci de bien vouloir nous confirmer:
     = form_tag popin_index_path, method: :post do 
       = hidden_field_tag :tournament_id, @tournament.id
-      =email_field_tag :popin_email, "", placeholder: 'Votre email...'
-      =text_field_tag :popin_phone_number,"", placeholder: 'Votre numéro de téléphone...'
-      .thanks Merci d'utiliser l'adresse email et le numéro de mobile utilisé lors de votre inscription au tournoi.
+      = email_field_tag :popin_email, "", placeholder: 'Votre email...'
+      = text_field_tag :popin_phone_number,"", placeholder: 'Votre numéro de téléphone...'
+      .thanks.little Merci d'utiliser l'adresse email et le numéro de mobile utilisé lors de votre inscription au tournoi.
       =submit_tag 'Valider'
 
-  .footer_message
-    .red En cas de problèmes,
-    vous pouvez me contacter par mail
-    %strong youssouf@squash-st-cloud.fr
-    ou par
-    %strong mobile 07 60 25 07 26
+    .footer_message
+      .red En cas de problèmes,
+      vous pouvez me contacter par mail
+      %strong youssouf@squash-st-cloud.fr
+      ou par
+      %strong mobile 07 60 25 07 26

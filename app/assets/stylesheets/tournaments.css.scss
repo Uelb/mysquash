@@ -325,25 +325,29 @@ body{
 }
 
 #inscription_confirmation{
+  color: white;
+
   body.popin &{
     position:relative;
     width:$wrap;
     margin:50px auto;
-    height:100%;    
+    height:100%;  
   }
-  margin-bottom:30px;
   .identity{
     text-transform:uppercase;
-    color: $grey;
   }
   .user_information{    
     text-transform:uppercase;
     color:#000;
     font-size:14px;
   }
-  .thanks{
-    color:$grey;
+  .thanks {
     padding:10px 0;
+    width: 350px;
+  }
+  .thanks.little { font-size: 12px; }
+  .footer_message {
+    margin-top: 20px;
   }
 }
 
