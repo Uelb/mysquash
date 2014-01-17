@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115073451) do
+ActiveRecord::Schema.define(version: 20140115084001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20140115073451) do
     t.integer  "waiting_list"
     t.datetime "first_match_date"
     t.boolean  "validated_by_user",  default: false
+  end
+
+  create_table "rubriques", force: true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "button_text"
+    t.string   "button_link"
+    t.boolean  "displayed",   default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tournaments", force: true do |t|

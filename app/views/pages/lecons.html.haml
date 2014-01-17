@@ -1,0 +1,6 @@
+#lecons.size_100.center
+  - @rubriques.each do |rubrique|
+    %div{id: "lecon_#{rubrique.id}"}
+      =rubrique.title
+      %br
+      =rubrique.description
