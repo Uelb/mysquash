@@ -1,6 +1,10 @@
+- #coding: UTF-8
 #lecons.size_100.center
   - @rubriques.each do |rubrique|
-    %div{id: "lecon_#{rubrique.id}"}
+    %div{id: "rubrique_#{rubrique.id}"}
       =rubrique.title
       %br
       =rubrique.description
+      -if rubrique.button_link
+        = link_to rubrique.button_text||"Accéder", rubrique.button_link
+  = image_tag asset_path("/assets/lecons_photo.png")

@@ -3,10 +3,15 @@ class Inscription < ActiveRecord::Base
 	belongs_to :tournament
 	validates_presence_of :user_id, :tournament_id
 	validates_uniqueness_of :user_id, scope: :tournament_id
+	scope :validated_by_admin, -> {where(validated_by_admin: true)}
 
 	before_create :check_tournament_limits
 	before_destroy :check_waiting_list
 
+
+	def self.send_first_match_hour
+		Tournament.opened.first.inscriptions.validated_by_admin
+	end
 
 	def admin_validate!
 		if self.validated_by_admin
