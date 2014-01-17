@@ -17,16 +17,18 @@
             .match 1er match
           
         - @males.each do |user|
-          .line-user
+          - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+          - user_match = @inscription.id == @current_user_inscription.id && @inscription.first_match_date
+
+          .line-user{:class => "#{user_match ? 'user_match' : ''}"}
             .name= user.name
-            - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
             .match= @inscription.first_match_date && I18n.l(@inscription.first_match_date, format: :short)
-            - if @inscription.id == @current_user_inscription.id && @inscription.first_match_date
+            - if user_match
               .confirmation_button
-              - if @inscription.validated_by_user
-                Confirmé
-              - else
-                = link_to "Confirmer", edit_inscription_path(@inscription)
+                - if @inscription.validated_by_user
+                  Confirmé
+                - else
+                  = link_to "Confirmer", edit_inscription_path(@inscription)
 
       #females.category
         .box-inscrit

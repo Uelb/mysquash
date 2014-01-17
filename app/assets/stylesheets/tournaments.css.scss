@@ -324,11 +324,33 @@ body{
     height:100%; 
 
     * { color: white; }
-    .line-user-header div { color: white; }
     .category {
       width: $wrap / 2;
       float: left;
     }
+
+    .line-user.user_match {
+      background: $red;
+      @include border-radius(200px);
+      position: relative;
+      right: 30px;
+      padding: 1px 0 1px 30px;
+    }
+
+    .confirmation_button {
+      background: white;
+      @include border-radius(200px);
+      padding: 0 5px;
+      position: absolute;
+      right: 30px;
+
+      a { 
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    .line-user-header div { color: white; }
   }
 }
 
