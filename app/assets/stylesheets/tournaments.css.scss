@@ -297,6 +297,14 @@ body{
     height:100%;
     background:rgba(0,0,0,.9);
   }
+
+  .close {
+    height: 44px;
+    float: right;
+    background: image-url('close.png') no-repeat right;
+    padding-right: 50px;
+    line-height: 44px;
+  }
 }
 
 #tournament_participants {
@@ -316,22 +324,43 @@ body{
     height:100%; 
 
     * { color: white; }
-    .line-user-header div { color: white; }
     .category {
       width: $wrap / 2;
       float: left;
     }
+
+    .line-user.user_match {
+      background: $red;
+      @include border-radius(200px);
+      position: relative;
+      right: 30px;
+      padding: 1px 0 1px 30px;
+    }
+
+    .confirmation_button {
+      background: white;
+      @include border-radius(200px);
+      padding: 0 5px;
+      position: absolute;
+      right: 30px;
+
+      a { 
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    .line-user-header div { color: white; }
   }
 }
 
 #inscription_confirmation{
-  color: white;
-
   body.popin &{
     position:relative;
     width:$wrap;
     margin:50px auto;
-    height:100%;  
+    height:100%;
+    color: white;  
   }
   .identity{
     text-transform:uppercase;
@@ -348,13 +377,6 @@ body{
   .thanks.little { font-size: 12px; }
   .footer_message {
     margin-top: 20px;
-  }
-  .close {
-    height: 44px;
-    float: right;
-    background: image-url('close.png') no-repeat right;
-    padding-right: 50px;
-    line-height: 44px;
   }
 }
 
