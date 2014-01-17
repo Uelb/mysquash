@@ -137,17 +137,18 @@ body{
 		width: $menu_item_width;
     text-transform:uppercase;
     font-size:15px;
-	}
-
-	.menu_item:nth-of-type(1) { text-align: left; }
-
-	.menu_item:nth-of-type(2) { text-align: center; }
-
-	.menu_item:nth-of-type(3) { text-align: right; }
-
-	.menu_item img { 
-		vertical-align: middle;
-		margin-right: 4px;
+    a{
+      text-decoration: none;
+      color:white;
+    }
+    
+    img { 
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+    &:nth-of-type(1) { text-align: left; }
+    &:nth-of-type(2) { text-align: center; }
+    &:nth-of-type(3) { text-align: right; }
 	}
 }
 
@@ -299,6 +300,7 @@ body{
   }
 
   .close {
+    cursor: pointer;
     height: 44px;
     float: right;
     background: image-url('close.png') no-repeat right;
@@ -338,13 +340,13 @@ body{
     }
 
     .confirmation_button {
-      background: white;
-      @include border-radius(200px);
-      padding: 0 5px;
-      position: absolute;
-      right: 30px;
-
+        position: absolute;
+        right: 30px;
       a { 
+        cursor:pointer;
+        background: white;
+        @include border-radius(200px);
+        padding: 0 5px;
         text-decoration: none;
         color: black;
       }

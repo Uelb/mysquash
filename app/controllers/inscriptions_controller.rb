@@ -23,6 +23,12 @@ class InscriptionsController < ApplicationController
 				text = "Nous avons déjà pris en compte votre inscription. Elle est en attente de validation par un administrateur. Vous recevrez un email aussitôt que possible."
 			end
 		end
+		if @inscription.user != current_user
+			sign_in @inscription.user
+		end
+		if $website_special_mode
+			session[:popin_closed] = true
+		end
 		redirect_to root_path, notice: text
 	end
 
@@ -92,7 +98,8 @@ class InscriptionsController < ApplicationController
 	end
 
 	def popin_index
-		if !$website_special_mode
+		p session[:popin_closed]
+		if !$website_special_mode || session[:popin_closed]
 			redirect_to root_path and return 
 		end
 		if current_user
@@ -100,6 +107,7 @@ class InscriptionsController < ApplicationController
 		else
 			user = User.where(email: params[:popin_email], telephone_number: params[:popin_phone_number]).first
 		end
+		@next_tournament = Tournament.where(published_in_next_tournament: true).first
 		if user
 			sign_in user
 			@tournament = Tournament.includes(:users, :inscriptions => :user).opened.first

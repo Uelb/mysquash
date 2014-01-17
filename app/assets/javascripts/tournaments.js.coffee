@@ -1,9 +1,8 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-
+global = global ? this
 handleSuccess = (data, textStatus, jqXHR) ->
-	console.log(jqXHR)
 	$("#registration_form").hide()
 	if jqXHR.status == 201
 		#Then the user is created but has not confirmed is email. A new confirmation email has been sent. 
@@ -35,9 +34,10 @@ set_tournament_form = () ->
 			alert("Vous devez entrer une adresse email.")
 			return false
 
-window.handleSuccess = handleSuccess
-window.handleFailure = handleFailure
-window.set_tournament_form = set_tournament_form
-
-$(window).bind "load", () ->
+global.handleSuccess = handleSuccess
+global.handleFailure = handleFailure
+global.set_tournament_form = set_tournament_form
+$ ->
+	console.log "toto"
 	set_tournament_form()
+	set_popin_close_button()

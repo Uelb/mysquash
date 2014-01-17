@@ -14,16 +14,13 @@ class TournamentsController < ApplicationController
         if current_user
             @current_user_inscription = @inscriptions.where(user_id: current_user.id).first
         end
-        if $website_special_mode
-            if current_user
-                redirect_to popin_index_path
-            else
-                render layout: "popin"
-            end
+        @popin_closed = session[:popin_closed]
+        if $website_special_mode && !session[:popin_closed] && current_user
+            redirect_to popin_index_path
         else
+            session[:popin_closed] = false
             if current_user
                 @current_user_email = current_user.email
-                sign_out current_user
             end
         end
     end

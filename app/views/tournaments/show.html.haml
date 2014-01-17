@@ -1,3 +1,3 @@
 = render template: "inscriptions/index"
-- if $website_special_mode
+- if $website_special_mode && !@popin_closed
   = render template: "tournaments/matches_index.html.haml"
