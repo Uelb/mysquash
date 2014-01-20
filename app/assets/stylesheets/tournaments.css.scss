@@ -16,6 +16,7 @@ $input_width: 200px;
 
 $red: #ff4b61;
 $grey: #787878;
+$light_grey: #d9d9d9;
 $wrap : 960px;
 
 /****************
@@ -542,6 +543,27 @@ form {
       }
       #left_arrow { left: 0; }
       #right_arrow { right: 0; }
+    }
+  }
+}
+
+/*************
+*** FOOTER ***
+*************/
+#footer {
+  #footer_links {
+    .footer_link {
+      text-align: center;
+      width: 104px;
+      width: $menu_item_width;
+      float: left;
+
+      a { text-decoration: none; }
+      p { 
+        color: $light_grey;
+        font-size: 20px;
+        padding-top: 0;
+      }
     }
   }
 }
