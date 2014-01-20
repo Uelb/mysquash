@@ -527,8 +527,21 @@ form {
     @include text-indent;
   }
 
-  #slideshow {
-    text-align: center;
+  #slideshow_wrapper {
     background: white;
+
+    #slideshow {
+      display: block;
+      text-align: center;
+      background: white;
+      position: relative;
+
+      #left_arrow, #right_arrow {
+        position: absolute;
+        top: 192px;
+      }
+      #left_arrow { left: 0; }
+      #right_arrow { right: 0; }
+    }
   }
 }
