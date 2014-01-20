@@ -53,6 +53,7 @@ $wrap : 960px;
   }
   * html & { height: 1px }
 }
+
 /**************************
 ***  Position and size  ***
 **************************/
@@ -130,6 +131,7 @@ body{
 	color: white;
   @include box-shadow;
   height: 45px;
+  margin-bottom: 30px;
 
 	.menu_item {
 		float: left;
@@ -153,7 +155,7 @@ body{
 }
 
 #tournament {
-  margin-top: 30px;
+
 	#tournament_introduction {
     margin-bottom:40px;
     h1{
@@ -169,6 +171,7 @@ body{
       font-family: 'Muli', sans-serif;
     }
 	}
+
   #tournament_information{
     min-height:850px;
     .layout4{
@@ -289,6 +292,7 @@ body{
     }
   }
 }
+
 .popin{
   .wrap-popin{
     width:100%;
@@ -509,5 +513,22 @@ form {
       line-height: 38px;
       margin-right: 5px;
     }
+  }
+}
+
+/*************
+*** LECONS ***
+*************/
+#lecons {
+
+  #lecon_introduction {
+    background:image-url('lecons_logo.png') no-repeat top center;
+    height:200px;
+    @include text-indent;
+  }
+
+  #slideshow {
+    text-align: center;
+    background: white;
   }
 }

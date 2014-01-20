@@ -1,5 +1,9 @@
 - #coding: UTF-8
-#lecons.size_100.center
+#lecons
+  #lecon_introduction.size_100.center
+    %h1 Les leçons
+
+  #rubriques.size_100.center
   - @rubriques.each do |rubrique|
     %div{id: "rubrique_#{rubrique.id}"}
       =rubrique.title
@@ -7,4 +11,6 @@
       =rubrique.description
       -if rubrique.button_link
         = link_to rubrique.button_text||"Accéder", rubrique.button_link
-  = image_tag asset_path("/assets/lecons_photo.png")
+
+  #slideshow
+    = image_tag asset_path("/assets/lecons_photo.png")
