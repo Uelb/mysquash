@@ -55,3 +55,5 @@ gem 'therubyracer'
 #Change to the thin server, faster
 gem 'thin'
 
+#File attachment on models
+gem "paperclip"

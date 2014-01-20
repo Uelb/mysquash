@@ -37,7 +37,10 @@ set_tournament_form = () ->
 global.handleSuccess = handleSuccess
 global.handleFailure = handleFailure
 global.set_tournament_form = set_tournament_form
-$ ->
-	console.log "toto"
+
+init = ->
 	set_tournament_form()
 	set_popin_close_button()
+
+$ init
+document.addEventListener "page:load", init

@@ -9,6 +9,7 @@ Mysquash::Application.routes.draw do
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)
 	resources :inscriptions
-	root "tournaments#show"
+	resources :lecons_pictures
+	root "tournaments#show", subdomain: :info
 
 end

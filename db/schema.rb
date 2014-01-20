@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140115084001) do
+ActiveRecord::Schema.define(version: 20140120091003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20140115084001) do
     t.integer  "waiting_list"
     t.datetime "first_match_date"
     t.boolean  "validated_by_user",  default: false
+  end
+
+  create_table "lecons_pictures", force: true do |t|
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "displayed",            default: true
   end
 
   create_table "rubriques", force: true do |t|

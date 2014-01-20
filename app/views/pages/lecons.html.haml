@@ -15,5 +15,7 @@
   #slideshow_wrapper
     #slideshow.size_100.center
       = image_tag asset_path("/assets/left_arrow.png"), id: "left_arrow"
-      = image_tag asset_path("/assets/lecons_photo.png")
+      #images
+        - @pictures.each do |picture|
+          = image_tag asset_path(picture.url(:medium))
       = image_tag asset_path("/assets/right_arrow.png"), id: "right_arrow"
