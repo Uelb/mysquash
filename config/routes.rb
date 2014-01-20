@@ -10,6 +10,6 @@ Mysquash::Application.routes.draw do
 	ActiveAdmin.routes(self)
 	resources :inscriptions
 	resources :lecons_pictures
-	root "tournaments#show", subdomain: :info
+	root "tournaments#show", subdomain: "info"
 
 end
