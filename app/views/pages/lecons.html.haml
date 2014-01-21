@@ -6,7 +6,7 @@
   #rubriques.size_100.center.clearfix
     - @rubriques.each do |rubrique| 
       %div.rubrique{id: "rubrique_#{rubrique.id}", class: "rubrique #{(rubrique.id % 2 == 0) ? 'right' : 'left'}"}
-        = image_tag asset_path("assets/red_point.png")
+        = image_tag "red_point.png"
         %h4=rubrique.title
         %p=rubrique.description
         -if rubrique.button_link
@@ -15,7 +15,7 @@
         .clearfix
       - if rubrique.id == 2
         #contact_rubrique.rubrique.center
-          = image_tag asset_path("assets/youssouf_picture.png")
+          = image_tag "youssouf_picture.png"
           %p.small
             %strong Youssouf Mahamat
             , Professeur diplômé d'état
@@ -27,8 +27,8 @@
 
   #slideshow_wrapper
     #slideshow.size_100.center
-      = image_tag asset_path("/assets/left_arrow.png"), id: "left_arrow"
+      = image_tag "left_arrow.png", id: "left_arrow"
       #images
         - @pictures.each do |picture|
-          = image_tag asset_path(picture.url(:large)), style: "display:none"
-      = image_tag asset_path("/assets/right_arrow.png"), id: "right_arrow"
+          = image_tag picture.url(:large), style: "display:none"
+      = image_tag "right_arrow.png", id: "right_arrow"
