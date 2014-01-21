@@ -203,6 +203,7 @@ fr:
       default: "%d %B %Y %H:%M:%S"
       long: "%A %d %B %Y %H:%M"
       short: "%A %HH"
+      month_and_year: "%B %Y"
     pm: 'pm'
   active_admin:
     dashboard: "Tableau de Bord"

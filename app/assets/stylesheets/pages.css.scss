@@ -2,32 +2,39 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @mixin text-indent {
-  text-indent:-1000em;
-  overflow:hidden;
-  outline:none;
+  text-indent: -1000em;
+  overflow: hidden;
+  outline: none;
 }
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}
+
 /*************
 *** LECONS ***
 *************/
 #lecons {
 
   #lecon_introduction {
-    background:image-url('lecons_logo.png') no-repeat top center;
-    height:200px;
+    background: image-url('lecons_logo.png') no-repeat top center;
+    height: 200px;
     @include text-indent;
   }
 
   #slideshow_wrapper {
-    background: white;
 
     #slideshow {
-      background: white;
       display: block;
       position: relative;
       text-align: center;
 
       #left_arrow, #right_arrow {
-        cursor:pointer;
+        cursor: pointer;
         position: absolute;
         top: 192px;
       }
@@ -45,10 +52,26 @@
 #rubriques {
   display: block;
   margin-top: 40px;
+  
+  &:after {
+    height: 20px;
+  }
 
   .rubrique {
     text-align: center;
     width: 400px;
+
+
+
+    a.disabled {
+      background-color: #eee;
+      border: 1px solid #c0c0c0;
+      color: #989898;
+      cursor: default;
+      @include border-radius(200px);
+      padding: 5px 35px;
+      text-decoration: none;
+    }
   }
 
   #contact_rubrique { 

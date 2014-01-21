@@ -190,6 +190,7 @@ body{
           float: left;
           font-family: 'pt_sansregular';
           font-weight: 300;
+          text-align: right;
         }
         .unite{
           background: image-url('unite.png') repeat-x left top;
@@ -391,7 +392,7 @@ body{
   width: 370px;
   padding-left: 180px;
   background: image-url('coupe.png') no-repeat left center;
-  height: 280px;
+  height: 450px;
   margin: 50px auto;  
   .tournoi_title{
     font-size:24px;

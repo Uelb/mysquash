@@ -39,7 +39,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def send_tournament_opening tournament
-    @emails = tournament.inscriptions.where(preinscription: true).pluck(:email)
+    @emails = PreinscriptionEmail.pluck :email
     mail(to: "no-reply@my-squash.com", subject: "Les inscriptions au nouveau tournoi sont ouvertes", bcc: @emails)
   end
 end

@@ -4,6 +4,7 @@ Mysquash::Application.routes.draw do
 	match 'inscriptions/upload', to: 'inscriptions#upload', via: [:get, :post]
 	match 'popin_index', to: 'inscriptions#popin_index', via: [:get, :post]
 	match 'lecons', to: 'pages#lecons', via: :get
+	match 'preinscription', to: 'inscriptions#preinscription', via: :post
 
 	devise_for :users
 	devise_for :admin_users, ActiveAdmin::Devise.config

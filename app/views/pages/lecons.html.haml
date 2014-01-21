@@ -10,7 +10,7 @@
         %h4=rubrique.title
         %p=rubrique.description
         -if rubrique.button_link
-          = link_to rubrique.button_text||"Accéder", rubrique.button_link
+          = link_to rubrique.button_text||"Accéder", rubrique.button_link, class: :disabled
       - if rubrique.id % 2 == 0
         .clearfix
       - if rubrique.id == 2

@@ -7,24 +7,17 @@ class InscriptionsController < ApplicationController
 	def create
 		@inscription = Inscription.new
 		@inscription.user = User.where(email: params[:email_confirmation]).first
-		@inscription.preinscription = (params[:preinscription] == "1")
-		if !@inscription.preinscription && (!@inscription.user || !@inscription.user.validate_user_information(params[:email_confirmation], params[:phone_number_confirmation]))
+		if (!@inscription.user || !@inscription.user.validate_user_information(params[:email_confirmation], params[:phone_number_confirmation]))
 			redirect_to(root_path, notice: "Les informations que vous avez entrées sont incorrects.") and return
 		end
 		@inscription.tournament = Tournament.where(id: params[:tournament_id]).first
 		if @inscription.valid?
 			@inscription.save
-			if @inscription.preinscription
-				text = "Votre demande d'information a bien été enregistrée, vous recevrez un mail d'information à l'occasion du prochain tournoi organisé par My Squash. Bonne journée."
-			else
-				text = "Votre inscription est en attente de validation par un administrateur. Vous recevrez un email aussitôt que possible."
-			end
+			text = "Votre inscription est en attente de validation par un administrateur. Vous recevrez un email aussitôt que possible."
 		else
 			old_inscription = @inscription.user.inscriptions.where(tournament_id: params[:tournament_id]).first
 			if old_inscription && old_inscription.validated_by_admin
 				text = "Vous êtes déjà inscrit à ce tournoi et votre inscription a été validé. Vous recevrez un email lorsque les horaires des premiers matches seront disponibles."
-			elsif old_inscription.preinscription
-				text = "Nous avions déjà enregistré votre demande. Vous recevrez un mail d'information à l'occasion du prochain tournoi organisé par My Squash. Bonne journée."
 			else
 				text = "Nous avons déjà pris en compte votre inscription. Elle est en attente de validation par un administrateur. Vous recevrez un email aussitôt que possible."
 			end
@@ -34,6 +27,11 @@ class InscriptionsController < ApplicationController
 			session[:popin_closed] = true
 		end
 		redirect_to root_path, notice: text
+	end
+
+	def preinscription
+		user = PreinscriptionEmail.create(email: params[:email])
+		redirect_to root_path, notice: "Votre demande d'information a bien été enregistrée, vous recevrez un mail d'information à l'occasion du prochain tournoi organisé par My Squash. Bonne journée."
 	end
 
 	def new

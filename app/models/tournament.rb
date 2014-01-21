@@ -18,6 +18,7 @@ class Tournament < ActiveRecord::Base
 		self.published_in_next_tournament = false
 		self.save
 		UserMailer.send_tournament_opening(self).deliver
+		PreinscriptionEmail.delete_all
 	end
 
 	def male_full?
