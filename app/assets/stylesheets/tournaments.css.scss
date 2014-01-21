@@ -566,4 +566,11 @@ form {
       }
     }
   }
+
+  #legal_mentions {
+    text-align: center;
+    margin-top: 20px;
+
+    h4 { color: $red; }
+  }
 }
