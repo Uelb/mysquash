@@ -21,14 +21,14 @@
             , Professeur diplômé d'état
           %p
             Vous pouvez me contacter par mail
-            %strong youssouf@squash-st-cloud.fr
+            %strong= link_to "youssouf@squash-st-cloud.fr", "mailto:youssouf@squash-st-cloud.fr"
             ou par
-            %strong mobile 06 06 06 06 06
+            %strong=link_to "mobile 06 06 06 06 06", "tel:0606060606"
 
   #slideshow_wrapper
     #slideshow.size_100.center
       = image_tag asset_path("/assets/left_arrow.png"), id: "left_arrow"
       #images
         - @pictures.each do |picture|
-          = image_tag asset_path(picture.url(:medium))
+          = image_tag asset_path(picture.url(:large)), style: "display:none"
       = image_tag asset_path("/assets/right_arrow.png"), id: "right_arrow"

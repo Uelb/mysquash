@@ -517,51 +517,6 @@ form {
   }
 }
 
-/*************
-*** LECONS ***
-*************/
-#lecons {
-
-  #lecon_introduction {
-    background:image-url('lecons_logo.png') no-repeat top center;
-    height:200px;
-    @include text-indent;
-  }
-
-  #slideshow_wrapper {
-    background: white;
-
-    #slideshow {
-      display: block;
-      text-align: center;
-      background: white;
-      position: relative;
-
-      #left_arrow, #right_arrow {
-        position: absolute;
-        top: 192px;
-      }
-      #left_arrow { left: 0; }
-      #right_arrow { right: 0; }
-    }
-  }
-}
-
-/****************
-*** RUBRIQUES ***
-****************/
-#rubriques {
-  display: block;
-  margin-top: 40px;
-
-  .rubrique {
-    text-align: center;
-    width: 400px;
-  }
-
-  #contact_rubrique { clear: both; }
-}
-
 
 /*************
 *** FOOTER ***

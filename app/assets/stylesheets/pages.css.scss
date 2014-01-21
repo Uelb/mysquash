@@ -1,3 +1,62 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin text-indent {
+  text-indent:-1000em;
+  overflow:hidden;
+  outline:none;
+}
+/*************
+*** LECONS ***
+*************/
+#lecons {
+
+  #lecon_introduction {
+    background:image-url('lecons_logo.png') no-repeat top center;
+    height:200px;
+    @include text-indent;
+  }
+
+  #slideshow_wrapper {
+    background: white;
+
+    #slideshow {
+      background: white;
+      display: block;
+      position: relative;
+      text-align: center;
+
+      #left_arrow, #right_arrow {
+        cursor:pointer;
+        position: absolute;
+        top: 192px;
+      }
+
+      #left_arrow { left: 0; }
+      
+      #right_arrow { right: 0; }
+    }
+  }
+}
+
+/****************
+*** RUBRIQUES ***
+****************/
+#rubriques {
+  display: block;
+  margin-top: 40px;
+
+  .rubrique {
+    text-align: center;
+    width: 400px;
+  }
+
+  #contact_rubrique { 
+    clear: both; 
+    
+    a {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}
