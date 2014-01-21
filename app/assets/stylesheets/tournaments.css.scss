@@ -391,16 +391,19 @@ body{
 #bottom_layer{
   width: 450px;
   padding-left: 180px;
-  background: image-url('coupe.png') no-repeat 30px center;
+  background: image-url('coupe.png') no-repeat 50px 10px;
   height: 450px;
   margin: 50px auto;  
+  
   .tournoi_title{
     font-size:24px;
     margin:0;
   }
+  
   .desc{
     font-size:22px;
   }
+  
   .info{
     width: 240px;
     font-weight: 900;
@@ -548,6 +551,6 @@ form {
 }
 
 #next_tournament {
-  padding-left: 30px;
-  padding-top: 150px;
+  padding-left: 45px;
+  padding-top: 40px;
 }
