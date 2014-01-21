@@ -1,3 +1,4 @@
+#coding: UTF-8
 class UserMailer < ActionMailer::Base
   default from: "admin@my-squash.com"
 
