@@ -1,11 +1,11 @@
 
 #next_tournament.center
-%h4.red.bold.tournoi_title PROCHAIN TOURNOI
-- if @next_tournament
-  %p.desc
-    = @next_tournament.title + " aura lieu le week-end du"
-    %strong= @next_tournament.date.day.to_s + " au " + (@next_tournament.date.day + 2).to_s + " " + l(@next_tournament.date, format: :month_and_year)
-= form_tag preinscription_path, method: :post do 
-  .info Je souhaitre être informé de l’ouverture des prochaines insciptions
-  = email_field_tag :email,'', placeholder: 'Votre email...', class: 'special_input', id: :preinscription_email
-  = submit_tag "Valider"
+  %h4.red.bold.tournoi_title PROCHAIN TOURNOI
+  - if @next_tournament
+    %p.desc
+      = @next_tournament.title + " aura lieu le week-end du"
+      %strong= @next_tournament.date.day.to_s + " au " + (@next_tournament.date.day + 2).to_s + " " + l(@next_tournament.date, format: :month_and_year)
+  = form_tag preinscription_path, method: :post do 
+    .info Je souhaitre être informé de l’ouverture des prochaines insciptions
+    = email_field_tag :email,'', placeholder: 'Votre email...', class: 'special_input', id: :preinscription_email
+    = submit_tag "Valider"

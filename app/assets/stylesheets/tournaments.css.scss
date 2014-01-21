@@ -389,9 +389,9 @@ body{
 }
 
 #bottom_layer{
-  width: 370px;
+  width: 450px;
   padding-left: 180px;
-  background: image-url('coupe.png') no-repeat left center;
+  background: image-url('coupe.png') no-repeat 30px center;
   height: 450px;
   margin: 50px auto;  
   .tournoi_title{
@@ -545,4 +545,9 @@ form {
 
     h4 { color: $red; }
   }
+}
+
+#next_tournament {
+  padding-left: 30px;
+  padding-top: 150px;
 }
