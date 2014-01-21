@@ -6,6 +6,7 @@ class Inscription < ActiveRecord::Base
 	scope :validated_by_admin, -> {where(validated_by_admin: true)}
 
 	before_create :check_tournament_limits
+	after_create :send_preinscription_mail
 	before_destroy :check_waiting_list
 
 
@@ -107,6 +108,12 @@ class Inscription < ActiveRecord::Base
 				inscription.waiting_list-=1
 				inscription.save!
 			end
+  		end
+  	end
+
+  	def send_preinscription_mail
+  		if self.preinscription
+  			UserMailer.send_preinscription(self).deliver
   		end
   	end
 end

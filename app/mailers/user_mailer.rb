@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "admin@mysquash.fr"
+  default from: "admin@my-squash.com"
 
   def inscription_email inscription
   	@user = inscription.user
@@ -29,5 +29,16 @@ class UserMailer < ActionMailer::Base
   	@body = body
   	users= User.where(id: users).map(&:email)
   	mail(:to => users, :subject => subject)
+  end
+
+  def send_preinscription inscription
+    @inscription = inscription
+    @user = inscription.user
+    mail(to: @user.email, subject: "Préinscription au prochain tournoi MySquash")
+  end
+
+  def send_tournament_opening tournament
+    @emails = tournament.inscriptions.where(preinscription: true).pluck(:email)
+    mail(to: "no-reply@my-squash.com", subject: "Les inscriptions au nouveau tournoi sont ouvertes", bcc: @emails)
   end
 end

@@ -17,15 +17,16 @@ class Tournament < ActiveRecord::Base
 		self.open = true
 		self.published_in_next_tournament = false
 		self.save
+		UserMailer.send_tournament_opening(self).deliver
 	end
 
 	def male_full?
-		if self.men_limit.nil? then return false end
+		if self.men_limit.nil? || self.men_limit == 0 then return false end
 		self.users.males.count >= self.men_limit
 	end
 
 	def female_full?
-		if self.women_limit.nil? then return false end
+		if self.women_limit.nil? || self.women_limit == 0 then return false end
 		self.users.females.count >= self.women_limit
 	end
 end

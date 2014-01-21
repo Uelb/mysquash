@@ -17,5 +17,6 @@ module Mysquash
     config.time_zone = 'Paris'
     config.encoding = "utf-8"
     I18n.default_locale = :fr
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end
