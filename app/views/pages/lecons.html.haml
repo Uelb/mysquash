@@ -3,14 +3,27 @@
   #lecon_introduction.size_100.center
     %h1 Les leçons
 
-  #rubriques.size_100.center
-  - @rubriques.each do |rubrique|
-    %div{id: "rubrique_#{rubrique.id}"}
-      =rubrique.title
-      %br
-      =rubrique.description
-      -if rubrique.button_link
-        = link_to rubrique.button_text||"Accéder", rubrique.button_link
+  #rubriques.size_100.center.clearfix
+    - @rubriques.each do |rubrique| 
+      %div.rubrique{id: "rubrique_#{rubrique.id}", class: "rubrique #{(rubrique.id % 2 == 0) ? 'right' : 'left'}"}
+        = image_tag asset_path("assets/red_point.png")
+        %h4=rubrique.title
+        %p=rubrique.description
+        -if rubrique.button_link
+          = link_to rubrique.button_text||"Accéder", rubrique.button_link
+      - if rubrique.id % 2 == 0
+        .clearfix
+      - if rubrique.id == 2
+        #contact_rubrique.rubrique.center
+          = image_tag asset_path("assets/youssouf_picture.png")
+          %p.small
+            %strong Youssouf Mahamat
+            , Professeur diplômé d'état
+          %p
+            Vous pouvez me contacter par mail
+            %strong youssouf@squash-st-cloud.fr
+            ou par
+            %strong mobile 06 06 06 06 06
 
   #slideshow_wrapper
     #slideshow.size_100.center

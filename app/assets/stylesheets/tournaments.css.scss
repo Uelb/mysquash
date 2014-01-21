@@ -547,6 +547,22 @@ form {
   }
 }
 
+/****************
+*** RUBRIQUES ***
+****************/
+#rubriques {
+  display: block;
+  margin-top: 40px;
+
+  .rubrique {
+    text-align: center;
+    width: 400px;
+  }
+
+  #contact_rubrique { clear: both; }
+}
+
+
 /*************
 *** FOOTER ***
 *************/
