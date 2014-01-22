@@ -9,16 +9,15 @@ class Tournament < ActiveRecord::Base
 			Tournament.update_all open: false
 			self.open = true
 			self.published_in_next_tournament = false
+			UserMailer.send_tournament_opening.deliver
+			PreinscriptionEmail.delete_all
 		end
 		true
 	end
 
 	def open!
 		self.open = true
-		self.published_in_next_tournament = false
 		self.save
-		UserMailer.send_tournament_opening(self).deliver
-		PreinscriptionEmail.delete_all
 	end
 
 	def male_full?

@@ -71,6 +71,7 @@
       @include border-radius(200px);
       padding: 5px 35px;
       text-decoration: none;
+      pointer-events: none;
     }
   }
 

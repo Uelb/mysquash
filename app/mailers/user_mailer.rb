@@ -38,7 +38,7 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Préinscription au prochain tournoi MySquash")
   end
 
-  def send_tournament_opening tournament
+  def send_tournament_opening
     @emails = PreinscriptionEmail.pluck :email
     mail(to: "no-reply@my-squash.com", subject: "Les inscriptions au nouveau tournoi sont ouvertes", bcc: @emails)
   end

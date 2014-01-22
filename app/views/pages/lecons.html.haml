@@ -9,7 +9,8 @@
         = image_tag "red_point.png"
         %h4=rubrique.title
         %p=rubrique.description
-        -if rubrique.button_link
+        -if !rubrique.button_link.blank?
+          - text = rubrique.button_text.blank? ? "Accéder" : rubrique.button_text
           = link_to rubrique.button_text||"Accéder", rubrique.button_link, class: :disabled
       - if rubrique.id % 2 == 0
         .clearfix
