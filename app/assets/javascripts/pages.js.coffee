@@ -28,7 +28,7 @@ set_lecons_arrows = ->
 change_comment = ->
 	current_object = $(".footer_comment:visible")
 	current_object.fadeOut ->
-		if current_object.next.length == 0
+		if current_object.next().length == 0
 			$(".footer_comment:first-child").fadeIn()
 		else
 			current_object.next().fadeIn()
