@@ -5,8 +5,9 @@
         =image_tag "footer_cup.png"
         %p les tournois
     .footer_link
-      =image_tag "footer_cart.png"
-      %p la boutique
+      =link_to "http://www.my-squash.com" do
+        =image_tag "footer_cart.png"
+        %p la boutique
     .footer_link
       =link_to lecons_path do 
         =image_tag "footer_racket.png"

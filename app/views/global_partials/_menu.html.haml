@@ -5,8 +5,9 @@
         =image_tag "header_cup.svg"
         %span Les tournois
     .menu_item
-      =image_tag "header_cart.svg"
-      %span La boutique
+      =link_to "http://www.my-squash.com" do 
+        =image_tag "header_cart.svg"
+        %span La boutique
     .menu_item
       =link_to lecons_path do 
         =image_tag "header_racket.svg"

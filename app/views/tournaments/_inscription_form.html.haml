@@ -1,14 +1,21 @@
 #tournament.size_100.center
   #tournament_introduction.center
     %h1 Inscriptions aux tournois
-    %h2.indent-title= @tournament.title
+    .indent-title.right.size_75
+      %p.size_50
+        = @tournament.title
+        %br
+        aura lieu le week-end du
+        %strong= @tournament.date.day.to_s + " au " + (@tournament.date.day + 2).to_s + " " + l(@tournament.date, format: :month_and_year)
 
   #tournament_information.clearfix
     #number_inscriptions.left.size_25
       .layout4
         %p.inscritlayout
           %span.area Nombre de joueurs inscrits actuellement :
-          %span.unite= @tournament.users.count
+          %span.unite= @tournament.users.count / 100
+          %span.unite= @tournament.users.count % 100 / 10
+          %span.unite= @tournament.users.count % 10
           .clearfix
     #description.left.size_75
       %p= @tournament.description

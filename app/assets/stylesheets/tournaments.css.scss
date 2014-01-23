@@ -152,12 +152,12 @@ body{
     &:nth-of-type(1) { text-align: left; }
     &:nth-of-type(2) { text-align: center; }
     &:nth-of-type(3) { text-align: right; }
-	}
+  }
 }
 
 #tournament {
 
-	#tournament_introduction {
+  #tournament_introduction {
     margin-bottom:40px;
     h1{
       background:image-url('logo.png') no-repeat top center;
@@ -171,10 +171,12 @@ body{
       font-weight:100;
       font-family: 'Muli', sans-serif;
     }
+    p{
+      font-size: 20px;
+    }
 	}
 
   #tournament_information{
-    min-height:850px;
     .layout4{
       background:image-url('layer-4.png') no-repeat left top;
       width:280px;
@@ -191,20 +193,22 @@ body{
           font-family: 'pt_sansregular';
           font-weight: 300;
           text-align: right;
+          margin-right: 5px;
         }
-        .unite{
-          background: image-url('unite.png') repeat-x left top;
-          color: rgba(85, 85, 85, 0.5);
-          width: 89px;
-          text-align: right;
+        .unite {
+          vertical-align: middle;
+          background: image-url('/assets/unite.png') no-repeat center center;
+          color: rgba(85, 85, 85, .5);
+          width: 33px;
+          text-align: center;
           height: 59px;
           padding-right: 2px;
-          line-height: 56px;
-          font-size: 53px;
+          line-height: 59px;
+          font-size: 44px;
           display: block;
           margin-top: 22px;
-          float: left;     
-          margin-left:5px;
+          float: left;
+          background-size: 100% 100%;
         }
       }
     }
@@ -219,11 +223,15 @@ body{
     }
   }
 	#description {
-		font-size: 13px;
+		font-size: 15px;
     font-weight:500;
     font-family:'pt_sansregular';
     #tournament_inscription{
       margin-bottom:65px;
+      .bold{
+        font-weight: bold;
+        font-size: 0.8em;
+      }
     }
 	}
   
@@ -388,6 +396,10 @@ body{
   }
 }
 
+.desc{
+    font-size:22px;
+}
+
 #bottom_layer{
   width: 450px;
   padding-left: 180px;
@@ -398,10 +410,6 @@ body{
   .tournoi_title{
     font-size:24px;
     margin:0;
-  }
-  
-  .desc{
-    font-size:22px;
   }
   
   .info{
