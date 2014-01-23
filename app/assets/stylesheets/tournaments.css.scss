@@ -282,7 +282,7 @@ body{
         min-height:10px;
       }
       .licence{width:100px;}
-      .name{width:150px;}
+      .name{width:210px;}
       .asso{width:70px;}
       .validation{width:110px;}
   }
@@ -416,6 +416,10 @@ body{
     width: 240px;
     font-weight: 900;
     margin-bottom: 10px;
+  }
+  &.no_background {
+    width:700px;
+    background: none;
   }
 }
 

@@ -16,12 +16,15 @@ class TournamentsController < ApplicationController
         end
         @popin_closed = session[:popin_closed]
         if $website_special_mode && !session[:popin_closed] && current_user
-            redirect_to popin_index_path
+            redirect_to popin_index_path and return
         else
             session[:popin_closed] = false
             if current_user
                 @current_user_email = current_user.email
             end
+            if $website_special_mode
+                render layout: "popin"
+            end 
         end
     end
 

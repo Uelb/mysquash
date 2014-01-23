@@ -2,6 +2,12 @@
 
 ActiveAdmin.register Inscription do
 
+  config.sort_order = "created_at desc"
+  filter :tournament
+  filter :validated_by_admin
+  filter :validated_by_user
+  filter :first_match_date
+
   permit_params :first_match_date, :comment
 
   batch_action :valider do |selection|
@@ -42,8 +48,7 @@ ActiveAdmin.register Inscription do
     column :tournament
     column :validated_by_admin
     column :preinscription
-    column :created_at
-    column :comment
+    column :validated_by_user
     column :waiting_list
     column :first_match_date
     actions defaults: true do |inscription|

@@ -1,4 +1,47 @@
 fr:
+  boolean:
+    true: Oui
+    false: Non
+  activerecord:
+    models:
+      admin_user:
+        one: Administrateur
+        other: Administrateurs
+      lecons_picture:
+        one: Image lecons
+        other: Image lecons
+      tournament:
+        one: Tournoi
+        other: Tournois
+      user:
+        one: Utilisateur
+        other: Utilisateurs
+    attributes:
+      created_at: Créé le
+      updated_at: Modifié le
+      inscription:
+        validated_by_admin: Validé
+        validated_by_user: Confirmé par l'utilisateur
+        preinscription: Préinscription
+        waiting_list: Liste d'attente
+        first_match_date: Date du Premier match
+        user: Utilisateur
+        tournament: Tournoi
+      lecons_picture:
+        picture_file_name: Nom de l'image
+        picture_content_type: Extension
+        Picture: Image
+        picture_file_size: Taille de l'image
+        picture_updated_at: Image modifié le 
+        created_at: Créé le
+        displayed: Affichée
+      rubrique:
+        title: Titre
+        button_text: Texte du bouton
+        button_link: Lien du bouton
+        displayed: Affichée
+        created_at: Crée le
+        updated_at: Modifié le
   date:
     abbr_day_names:
       - dim
