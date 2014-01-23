@@ -1,3 +1,4 @@
+# encoding: utf-8
 ActiveAdmin.register Tournament do
 
   permit_params :open, :title, :description, :date, :men_limit, :women_limit, :published_in_next_tournament

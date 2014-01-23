@@ -1,3 +1,4 @@
+# encoding: utf-8
 class LeconsPicture < ActiveRecord::Base
 	has_attached_file :picture, :styles => { :large => "700x375>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
 	validates_attachment :picture, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png", "image/jpeg"] }

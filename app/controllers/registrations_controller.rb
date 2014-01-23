@@ -1,3 +1,4 @@
+# encoding: utf-8
 # app/controllers/registrations_controller.rb
 class RegistrationsController < Devise::RegistrationsController
   def new

@@ -93,12 +93,12 @@ ActiveRecord::Schema.define(version: 20140121171616) do
     t.datetime "date"
     t.string   "title"
     t.text     "description"
+    t.boolean  "open"
     t.integer  "men_limit"
     t.integer  "women_limit"
     t.boolean  "published_in_next_tournament"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "open"
   end
 
   create_table "users", force: true do |t|
