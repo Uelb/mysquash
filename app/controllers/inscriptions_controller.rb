@@ -42,7 +42,7 @@ class InscriptionsController < ApplicationController
 
 	def check_user
 		user = User.where(email: params[:email]).first
-		if user.confirmed?
+		if user && user.confirmed?
 			render :nothing => true, :status => 200, :content_type => 'text/html'
 		elsif user
 			user.resend_confirmation_instructions

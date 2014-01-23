@@ -6,7 +6,7 @@ Mysquash::Application.routes.draw do
 	match 'lecons', to: 'pages#lecons', via: :get
 	match 'preinscription', to: 'inscriptions#preinscription', via: :post
 
-	devise_for :users
+	devise_for :users, :controllers => {:registrations => "registrations", :confirmations => "confirmations"}
 	devise_for :admin_users, ActiveAdmin::Devise.config
 	ActiveAdmin.routes(self)
 	resources :inscriptions

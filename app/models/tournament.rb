@@ -5,7 +5,7 @@ class Tournament < ActiveRecord::Base
 	scope :opened, -> {where(open: true)}
 
 	def check_that_there_is_only_one_current
-		if self.open
+		if self.open && self.open_changed?
 			Tournament.update_all open: false
 			self.open = true
 			self.published_in_next_tournament = false
