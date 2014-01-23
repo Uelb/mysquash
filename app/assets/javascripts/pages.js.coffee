@@ -25,8 +25,21 @@ set_lecons_arrows = ->
 		)
 	)
 
+change_comment = ->
+	current_object = $(".footer_comment:visible")
+	current_object.fadeOut ->
+		if current_object.next.length == 0
+			$(".footer_comment:first-child").fadeIn()
+		else
+			current_object.next().fadeIn()
+
+set_footer_comments = ->
+	$(".footer_comment:first-child").show()
+	window.setInterval change_comment , 10000
+
 init_pages = ->
 	set_lecons_arrows()
+	set_footer_comments()
 
 $ init_pages
 document.addEventListener "page:load", init_pages

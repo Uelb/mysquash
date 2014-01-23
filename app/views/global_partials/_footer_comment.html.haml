@@ -1,2 +1,4 @@
-.footer_comment "Avant le début du stage, je n'avais jamais tenue une raquette. À la fin du stage, je prenais plaisir à jouer. Le format bien qu'intensif est idéal ppour découvrir ce sport dans une bonne ambiance et en petit comité. J'ai très envie de m'inscrire à une prochaine session pour progesser davantage. Merci à Youssouf pour sa patience et ses conseils !"
-.footer_comment_author Gwladys
+- @comments.each do |comment|
+  .footer_comment
+    .footer_comment_comment= comment.comment
+    .footer_comment_author= comment.author

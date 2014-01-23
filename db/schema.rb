@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121171616) do
+ActiveRecord::Schema.define(version: 20140123140423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 20140121171616) do
     t.boolean  "validated_by_user",  default: false
   end
 
+  create_table "lecons_comments", force: true do |t|
+    t.text     "comment"
+    t.string   "author"
+    t.boolean  "displayed",  default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "lecons_pictures", force: true do |t|
     t.string   "picture_file_name"
     t.string   "picture_content_type"
@@ -93,12 +101,12 @@ ActiveRecord::Schema.define(version: 20140121171616) do
     t.datetime "date"
     t.string   "title"
     t.text     "description"
-    t.boolean  "open"
     t.integer  "men_limit"
     t.integer  "women_limit"
     t.boolean  "published_in_next_tournament"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "open"
   end
 
   create_table "users", force: true do |t|

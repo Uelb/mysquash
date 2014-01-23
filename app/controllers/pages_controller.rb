@@ -9,6 +9,7 @@ class PagesController < ApplicationController
 	def lecons
 		@rubriques = Rubrique.all
 		@pictures = LeconsPicture.displayed.map(&:picture)
+		@comments = LeconsComment.displayed
 		render layout: "lecons"
 	end
 end
