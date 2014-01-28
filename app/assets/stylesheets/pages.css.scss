@@ -1,6 +1,8 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$red: #ff4b61;
+
 @mixin text-indent {
   text-indent: -1000em;
   overflow: hidden;
@@ -24,6 +26,23 @@
   -moz-box-shadow: $horizontal $vertical $spread rgba(0, 0, 0, $alpha);
   box-shadow: $horizontal $vertical $spread rgba(0, 0, 0, $alpha);
 }
+@mixin circle($radius, $color){
+  width: $radius * 2;
+  height: $radius * 2;
+  border-radius: $radius;
+  background: -webkit-radial-gradient(transparent, transparent 45%, $color 45%, $color 100%);
+}
+@mixin arrow-down($size, $top, $left, $color){
+  width: 0px;
+  height: 0px;
+  border-left: $size solid transparent;
+  border-right: $size solid transparent;
+  border-top: $size solid $color;
+  top: $top;
+  position: relative;
+  left: $left;
+}
+
 
 /*************
 *** LECONS ***
@@ -53,6 +72,15 @@
       
       #right_arrow { right: 0; }
     }
+  }
+
+  .arrow_down{
+    @include arrow-down(8px, 12px, 7px, $red);
+  }
+  .circle{
+    margin:auto;
+    margin-bottom: 10px;
+    @include circle(15px,$red);
   }
 }
 

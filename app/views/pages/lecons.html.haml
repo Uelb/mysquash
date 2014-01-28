@@ -6,7 +6,8 @@
   #rubriques.size_100.center.clearfix
     - @rubriques.each do |rubrique| 
       %div.rubrique{id: "rubrique_#{rubrique.id}", class: "rubrique #{(rubrique.id % 2 == 0) ? 'right' : 'left'}"}
-        = image_tag "red_point.png"
+        .circle
+          .arrow_down
         %h4=rubrique.title
         %p=rubrique.description
         -if !rubrique.button_link.blank?
