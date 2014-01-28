@@ -13,7 +13,8 @@ class InscriptionsController < ApplicationController
 		@inscription.tournament = Tournament.where(id: params[:tournament_id]).first
 		if @inscription.valid?
 			@inscription.save
-			text = "Votre inscription est en attente de validation par un administrateur. Vous recevrez un email aussitôt que possible."
+			@inscription.admin_validate!
+			text = "Votre inscription a été validée. Vous recevrez un email aussitôt que possible."
 		else
 			old_inscription = @inscription.user.inscriptions.where(tournament_id: params[:tournament_id]).first
 			if old_inscription && old_inscription.validated_by_admin

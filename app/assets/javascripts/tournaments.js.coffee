@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 global = global ? this
+dont_hide_notice = false
 handleSuccess = (data, textStatus, jqXHR) ->
 	$("#registration_form").hide()
 	if jqXHR.status == 201
@@ -12,7 +13,9 @@ handleSuccess = (data, textStatus, jqXHR) ->
 	else if jqXHR.status == 200
 		#The user is recognized. We nees to make sure that the person asking for the inscription is the correct person.
 		$.get '/inscriptions/new', {tournament_id: $("#tournament_id").val(), email: $("#email").val()}, (data) ->
-			$(".notice.alert").remove()
+			if !dont_hide_notice
+				$(".notice.alert").hide()
+			dont_hide_notice = false
 			$('#result_wrapper').html(data)
 			$("#email_confirmation").val($("#email").val())
 
@@ -41,6 +44,11 @@ global.set_tournament_form = set_tournament_form
 init = ->
 	set_tournament_form()
 	set_popin_close_button()
+	text = "Les informations que vous avez entrées sont incorrects."
+	if $(".notice.alert").html() == text
+		$("#tournament_form").submit()
+		dont_hide_notice = true
+
 
 $ init
 document.addEventListener "page:load", init
