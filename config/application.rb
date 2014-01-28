@@ -18,5 +18,7 @@ module Mysquash
     config.encoding = "utf-8"
     I18n.default_locale = :fr
     config.autoload_paths += %W(#{config.root}/lib)
+
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   end
 end
