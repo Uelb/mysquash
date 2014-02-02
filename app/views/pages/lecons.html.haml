@@ -29,6 +29,7 @@
 
   #slideshow_wrapper
     #slideshow.size_100.center
+      .slideshow-hover
       = image_tag "left_arrow.png", id: "left_arrow"
       #images
         - @pictures.each do |picture|
