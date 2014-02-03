@@ -88,27 +88,25 @@ class Inscription < ActiveRecord::Base
   			male = false
   		end
   		if !male.nil?
-  			self.waiting_list = self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where.not(waiting_list: nil).count + 1
-			self.save!
+  			self.waiting_list = (self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where.not(waiting_list: nil).count + 1)
 		end
   	end
 
   	def check_waiting_list
   		if self.user.male && self.tournament.male_full?
   			male = true
-  			promoted_inscription = self.tournament.inscriptions.male.where(waiting_list: 1)	
+  			promoted_inscription = self.tournament.inscriptions.male	
   			
   		elsif !self.user.male && self.tournament.female_full?
   			male = false
-  			promoted_inscription = self.tournament.inscriptions.female.where(waiting_list: 1)
+  			promoted_inscription = self.tournament.inscriptions.female
   		end
   		if !male.nil?
- 	  		promoted_inscription.waiting_list = nil
-			promoted_inscription.save!
+  			promoted_inscription = promoted_inscription.where(waiting_list: 1).readonly(false).first
+ 	  		promoted_inscription.update_attribute(:waiting_list, nil)
 			UserMailer.waiting_list_validated(promoted_inscription).deliver
-			self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where.not(waiting_list: nil).each do |inscription|
-				inscription.waiting_list-=1
-				inscription.save!
+			self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where("waiting_list > (?)", 1).each do |inscription|
+				inscription.update_attribute(:waiting_list, inscription.waiting_list-1 )
 			end
   		end
   	end
