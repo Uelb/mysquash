@@ -43,6 +43,9 @@ class InscriptionsController < ApplicationController
 
 	def check_user
 		user = User.where(email: params[:email]).first
+		if current_user &&  current_user != user
+			sign_out current_user
+		end
 		if user && user.confirmed?
 			render :nothing => true, :status => 200, :content_type => 'text/html'
 		elsif user
@@ -101,7 +104,6 @@ class InscriptionsController < ApplicationController
 	end
 
 	def popin_index
-		p session[:popin_closed]
 		if !$website_special_mode || session[:popin_closed]
 			redirect_to root_path and return 
 		end
