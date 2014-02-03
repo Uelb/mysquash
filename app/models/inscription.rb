@@ -5,6 +5,8 @@ class Inscription < ActiveRecord::Base
 	validates_presence_of :user_id, :tournament_id
 	validates_uniqueness_of :user_id, scope: :tournament_id
 	scope :validated_by_admin, -> {where(validated_by_admin: true)}
+	scope :male, -> {joins(:user).merge(User.where(male: true))}
+	scope :female, -> {joins(:user).merge(User.where(male: false))}
 
 	before_create :check_tournament_limits
 	after_create :send_preinscription_mail
@@ -86,7 +88,7 @@ class Inscription < ActiveRecord::Base
   			male = false
   		end
   		if !male.nil?
-  			 self.waiting_list = (self.tournament.inscriptions.where("user.male = (?)", male).where.not(waiting_list: nil).count + 1)
+  			self.waiting_list = self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where.not(waiting_list: nil).count + 1
 			self.save!
 		end
   	end
@@ -94,18 +96,17 @@ class Inscription < ActiveRecord::Base
   	def check_waiting_list
   		if self.user.male && self.tournament.male_full?
   			male = true
-  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", true).where(waiting_list: 1)	
+  			promoted_inscription = self.tournament.inscriptions.male.where(waiting_list: 1)	
   			
   		elsif !self.user.male && self.tournament.female_full?
   			male = false
-  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", false).where(waiting_list: 1)
+  			promoted_inscription = self.tournament.inscriptions.female.where(waiting_list: 1)
   		end
   		if !male.nil?
-  			promoted_inscription = self.tournament.inscriptions.where("user.male = (?)", male).where(waiting_list: 1)
-	  		promoted_inscription.waiting_list = nil
+ 	  		promoted_inscription.waiting_list = nil
 			promoted_inscription.save!
 			UserMailer.waiting_list_validated(promoted_inscription).deliver
-			self.tournament.inscriptions.where("user.male = (?)", male).where.not(waiting_list: nil).each do |inscription|
+			self.tournament.inscriptions.joins(:user).merge(User.where(male: male)).where.not(waiting_list: nil).each do |inscription|
 				inscription.waiting_list-=1
 				inscription.save!
 			end
