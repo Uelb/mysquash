@@ -17,9 +17,23 @@ fr:
       user:
         one: Utilisateur
         other: Utilisateurs
+      lecons_comment:
+        one: Commentaire lecons
+        other: Commentaires lecons
     attributes:
       created_at: Créé le
       updated_at: Modifié le
+      user:
+        created_at: Créé le
+        first_name: Prénom
+        last_name: Nom
+        licence: licence
+        association_name: Association
+        male: Homme ?
+        telephone_number: Numéro de téléphone
+        confirmed_at: Confirmé le
+        female: Femme ?
+        tournaments: Tournoi
       inscription:
         validated_by_admin: Validé
         validated_by_user: Confirmé par l'utilisateur
@@ -42,6 +56,21 @@ fr:
         button_link: Lien du bouton
         displayed: Affichée
         created_at: Crée le
+        updated_at: Modifié le
+      tournament:
+        title: Titre
+        description: Déscription
+        open: Actif
+        men_limit: Limite (H)
+        women_limit: Limite (F)
+        published_in_next_tournament: Prochain tournoi
+        created_at: Créé le
+        updated_at: Modifié le
+      lecons_comment:
+        comment: Commentaire
+        author: Auteur
+        displayed: Affiché
+        created_at: Créé le
         updated_at: Modifié le
   date:
     abbr_day_names:
