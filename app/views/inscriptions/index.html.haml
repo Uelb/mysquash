@@ -20,7 +20,9 @@
           .asso Asso
           .validation Validation
         
-      - @males.each do |user|
+      - @not_waiting_list_males = @males.select{|male| @inscriptions.select{|inscription| inscription.user_id == male.id}.first.waiting_list.nil?}
+      - @waiting_list_males = @males - @not_waiting_list_males
+      - @not_waiting_list_males.each do |user|
         .line-user
           .licence= user.licence
           .name= user.name
@@ -30,7 +32,15 @@
             .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
           - else
             .validation= "NON VALIDÉ"
-
+      - if !@not_waiting_list_males.empty?
+        %br
+        .bold.red SUR LISTE D'ATTENTE :
+      - @waiting_list_males.each do |user|
+        .line-user
+          .licence= user.licence
+          .name= user.name
+          .asso= user.association_name
+          .validation
     #females.category
       .box-inscrit
         %span.number= @females.count 
@@ -41,17 +51,29 @@
 
       - if @females.count > 0   
         .line-user-header
-          .licence-head N°license
+          .licence N°license
           .name Prénom, Nom
           .asso Asso
           .validation Validation
         
-      - @females.each do |user|
-        .licence= user.licence
-        .name= user.name
-        .asso= ""
-        - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
-        - if @inscription.validated_by_admin then
-          .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
-        - else
-          .validation= "NON VALIDÉ"
+      - @not_waiting_list_females = @females.select{|female| @inscriptions.select{|inscription| inscription.user_id == female.id}.first.waiting_list.nil?}
+      - @waiting_list_females = @females - @not_waiting_list_females
+      - @not_waiting_list_females.each do |user|
+        .line-user
+          .licence= user.licence
+          .name= user.name
+          .asso= user.association_name
+          - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
+          - if @inscription.validated_by_admin then
+            .validation=  "OK (#{@inscription.validation_date.to_formatted_s(:short)})" 
+          - else
+            .validation= "NON VALIDÉ"
+      - if !@waiting_list_females.empty?
+        %br
+        .bold.red SUR LISTE D'ATTENTE
+      - @waiting_list_females.each do |user|
+        .line-user
+          .licence= user.licence
+          .name= user.name
+          .asso= user.association_name
+          .validation
