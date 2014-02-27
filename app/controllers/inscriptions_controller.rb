@@ -30,6 +30,10 @@ class InscriptionsController < ApplicationController
 		redirect_to root_path, notice: text
 	end
 
+	def super_create
+		create
+	end
+
 	def preinscription
 		user = PreinscriptionEmail.create(email: params[:email])
 		redirect_to root_path, notice: "Votre demande d'information a bien été enregistrée, vous recevrez un mail d'information à l'occasion du prochain tournoi organisé par My Squash. Bonne journée."
@@ -52,7 +56,8 @@ class InscriptionsController < ApplicationController
 			user.resend_confirmation_instructions
 			render :partial => "inscriptions/not_confirmed_user", :status => 201, :content_type => 'text/html'
 		else
-			render :nothing => true, :status => 412, :content_type => 'text/html'
+			user = User.create email: params[:email]
+			render :nothing => true, :status => 202
 		end
 	end
 

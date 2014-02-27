@@ -231,6 +231,7 @@ body{
       .bold{
         font-weight: bold;
         font-size: 0.8em;
+        width: 55%;
       }
     }
 	}
@@ -449,6 +450,7 @@ a.link{
 .alert{
   color:$red;
   font-weight:900;
+  width:70%;
 }
 
 form {
@@ -566,4 +568,9 @@ form {
 #next_tournament {
   padding-left: 45px;
   padding-top: 40px;
+}
+
+.fat {
+  font-size: 1.2em;
+  font-weight: bold;
 }

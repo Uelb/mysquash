@@ -6,18 +6,18 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    build_resource(sign_up_params)
+    resource = User.where(email: sign_up_params[:email]).first
 
-    if resource.save
+    if resource.update_attributes sign_up_params.slice!(:email)
       yield resource if block_given?
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_flashing_format?
         sign_up(resource_name, resource)
-        respond_with resource, :location => after_sign_up_path_for(resource)
+        redirect_to controller: :inscriptions, action: :super_create, email: resource.email, email_confirmation: resource.email, phone_number_confirmation: resource.telephone_number, tournament_id: Tournament.opened.first.id
       else
         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
         expire_data_after_sign_in!
-        respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+        redirect_to controller: :inscriptions, action: :super_create, email: resource.email, email_confirmation: resource.email, phone_number_confirmation: resource.telephone_number, tournament_id: Tournament.opened.first.id
       end
     else
       clean_up_passwords resource

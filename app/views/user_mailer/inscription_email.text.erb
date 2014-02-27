@@ -1,0 +1,13 @@
+
+Confirmation de la boite mail <%=@email%>
+
+===============================================
+
+Bienvenue au tournoi my-squash,
+
+
+Pour activer votre inscription, veuillez cliquer sur le lien ci-dessous ou copier/coller dans votre navigateur internet.
+
+<%="#{root_url}inscriptions/#{@inscription.id}/edit?token=#{@inscription.token}"%>
+
+Ceci est un mail automatique, Merci de ne pas y répondre.

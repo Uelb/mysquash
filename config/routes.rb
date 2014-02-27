@@ -5,6 +5,7 @@ Mysquash::Application.routes.draw do
 	match 'popin_index', to: 'inscriptions#popin_index', via: [:get, :post]
 	match 'lecons', to: 'pages#lecons', via: :get
 	match 'preinscription', to: 'inscriptions#preinscription', via: :post
+	get 'super_create', to: 'inscriptions#super_create'
 
 	devise_for :users, :controllers => {:registrations => "registrations", :confirmations => "confirmations"}
 	devise_for :admin_users, ActiveAdmin::Devise.config

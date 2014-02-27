@@ -18,13 +18,17 @@ handleSuccess = (data, textStatus, jqXHR) ->
 			dont_hide_notice = false
 			$('#result_wrapper').html(data)
 			$("#email_confirmation").val($("#email").val())
-
+	else if  jqXHR.status == 202
+		$("#result_wrapper").html("<div class='notice alert'>Un message contenant un lien de confirmation a été envoyé à votre addresse email. Ouvrez ce lien pour activer votre compte.</div>")
+		$("#result_wrapper").show()
 handleFailure = (data) ->
 	console.log(data)
-	$("#registration_form #user_email").val $("#tournament_form #email").val()
-	$("#registration_form").show()
+
 
 set_tournament_form = () ->
+	if $("#confirmed_email").val()
+		$("#registration_form").show()
+		$("#user_email").val($("#confirmed_email").val())
 	$("#tournament_form").submit (evt) ->
 		evt.preventDefault()
 		email = $("#tournament_form #email").val()

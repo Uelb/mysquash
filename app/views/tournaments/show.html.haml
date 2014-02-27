@@ -1,3 +1,5 @@
+- if @after_confirmation && @user_email
+  = hidden_field_tag :confirmed_email, @user_email
 = render template: "inscriptions/index"
 - if $website_special_mode && !@popin_closed
   = render template: "tournaments/matches_index.html.haml"

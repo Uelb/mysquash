@@ -20,15 +20,15 @@
     #description.left.size_75
       %p= @tournament.description
       #tournament_inscription.center
-        %h2.title INSCRIPTION
-        %p.bold.upper Merci de bien vouloir renseigner le champ suivant :
+        %p.bold.upper Pour vous inscrire, Merci de bien vouloir renseigner le champ suivant :
         = form_tag inscriptions_path, method: :post, id: :tournament_form do 
           = hidden_field_tag :tournament_id, @tournament.id
-          = email_field_tag :email, @current_user_email
+          = email_field_tag :email, @current_user_email, placeholder: "Votre email..."
           = submit_tag "Valider"
           .infolegal
             %span.asterisk *
-            Merci d'indiquer un email valide, un email de confirmation vous sera envoyé à cette adresse pour validation définitive de votre inscription.
+            .fat.red CHAMP OBLIGATOIRE :
+            .clearfix Merci d'indiquer un email valide, un email de confirmation vous sera envoyé à cette adresse pour validation définitive de votre inscription.
           
 
       #registration_form

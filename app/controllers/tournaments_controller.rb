@@ -16,6 +16,9 @@ class TournamentsController < ApplicationController
             @current_user_inscription = @inscriptions.where(user_id: current_user.id).first
         end
         @popin_closed = session[:popin_closed]
+        @after_confirmation = session[:after_confirmation]
+        session[:after_confirmation] = false
+        @user_email = session[:email]
         if $website_special_mode && !session[:popin_closed] && current_user
             redirect_to popin_index_path and return
         else
