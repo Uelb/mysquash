@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :first_name, :last_name, on: :update
 
   def name
-  	first_name + " " + last_name
+    first_name.to_s + " " + last_name.to_s
   end
 
   def validate_user_information email, telephone_number
