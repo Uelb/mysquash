@@ -93,6 +93,7 @@ class Inscription < ActiveRecord::Base
   	end
 
   	def check_waiting_list
+      return true unless self.user
   		if self.user.male && self.tournament.male_full?
   			male = true
   			promoted_inscription = self.tournament.inscriptions.male	

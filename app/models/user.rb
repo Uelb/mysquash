@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  has_many :inscriptions
+  has_many :inscriptions, dependent: :destroy
   has_many :tournaments, through: :inscriptions
   scope :males, -> {where(male: true)}
   scope :females, -> {where(male: false)}
