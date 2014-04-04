@@ -275,7 +275,7 @@ fr:
     formats:
       default: "%d %B %Y %H:%M:%S"
       long: "%A %d %B %Y %H:%M"
-      short: "%A %HH"
+      short: "%A %HH:%M"
       month_and_year: "%B %Y"
     pm: 'pm'
   active_admin:
