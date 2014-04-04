@@ -18,7 +18,7 @@
         - @males.each do |user|
           - @inscription = @inscriptions.select{|inscription| inscription.user_id == user.id}.first
           - user_match = nil
-          - if @inscription
+          - if @current_user_inscription
             - user_match = @inscription.id == @current_user_inscription.id && @inscription.first_match_date
 
           .line-user{:class => "#{user_match ? 'user_match' : ''}"}
