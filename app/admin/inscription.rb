@@ -8,7 +8,7 @@ ActiveAdmin.register Inscription do
   filter :validated_by_user
   filter :first_match_date
 
-  permit_params :first_match_date, :comment
+  permit_params :user_id, :tournament_id, :first_match_date, :comment
 
   batch_action :valider do |selection|
     Inscription.find(selection).each do |inscription|
@@ -36,6 +36,7 @@ ActiveAdmin.register Inscription do
 
   form do |f|
   	f.inputs "Details" do 
+      f.input :tournament
       f.input :user
   		f.input :comment
   		f.input :first_match_date
