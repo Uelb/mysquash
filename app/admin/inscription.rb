@@ -36,6 +36,7 @@ ActiveAdmin.register Inscription do
 
   form do |f|
   	f.inputs "Details" do 
+      f.input :user
   		f.input :comment
   		f.input :first_match_date
   	end	
