@@ -6,7 +6,7 @@
         = @tournament.title
         %br
         aura lieu le week-end du
-        %strong= @tournament.date.day.to_s + " au " + (@tournament.date + 2.days).day.to_s + " " + l(@tournament.date, format: :month_and_year)
+        %strong= l(@tournament.date, format: :day_and_month) + " au " + l(@tournament.date + 2.days, format: :short_day)
 
   #tournament_information.clearfix
     #number_inscriptions.left.size_25

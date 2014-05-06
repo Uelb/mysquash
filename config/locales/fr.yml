@@ -277,6 +277,8 @@ fr:
       long: "%A %d %B %Y %H:%M"
       short: "%A %HH%M"
       month_and_year: "%B %Y"
+      day_and_month: "%d %B"
+      short_day: "%d %B %Y"
     pm: 'pm'
   active_admin:
     dashboard: "Tableau de Bord"
